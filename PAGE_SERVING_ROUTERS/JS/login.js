@@ -96,6 +96,11 @@
         setCookie('hashed_password', data.hashed_password, 365);
         console.log("✓ Hashed credentials stored in cookies");
         
+        if (data.access_token) {
+          localStorage.setItem('authToken', data.access_token);
+          console.log("✓ JWT access token stored in localStorage");
+        }
+        
         toast("Login successful. Redirecting...");
         setTimeout(()=> {
           console.log("Redirecting to admin home page...");
@@ -125,6 +130,12 @@
       if(!res.ok) return false;
       const data = await res.json().catch(()=>null);
       console.log("Auto-login result:", data && data.status === "success");
+      
+      if (data && data.status === "success" && data.access_token) {
+        localStorage.setItem('authToken', data.access_token);
+        console.log("✓ JWT access token stored in localStorage");
+      }
+      
       return !!(data && data.status === "success");
     }catch(err){
       console.error("Error during auto-login:", err);

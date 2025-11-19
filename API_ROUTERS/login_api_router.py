@@ -4,6 +4,7 @@ import asyncpg
 import os
 from dotenv import load_dotenv
 from DATABASE_HANDLER.utils.General_Functions import sha256_hash
+from DATABASE_HANDLER.auth import create_access_token
 
 load_dotenv()
 
@@ -21,6 +22,7 @@ async def login(credentials: LoginRequest):
     API endpoint to handle user login
     Accepts email and password from frontend
     Hashes credentials and checks against database
+    Returns JWT access token for API authentication
     """
     print(f"Login attempt - Email: {credentials.email}")
     print(f"Login attempt - Password: {credentials.password}")
@@ -47,6 +49,14 @@ async def login(credentials: LoginRequest):
                 print(f"Login failed - Account is deactivated: {user['username']}")
                 raise HTTPException(status_code=403, detail="Account is deactivated. Please contact administrator.")
             
+            access_token = create_access_token(
+                data={
+                    "user_id": str(user['id']),
+                    "username": user['username'],
+                    "role": "admin"
+                }
+            )
+            
             print(f"Login successful for user: {user['username']}")
             return {
                 "status": "success",
@@ -54,7 +64,9 @@ async def login(credentials: LoginRequest):
                 "email": credentials.email,
                 "username": user['username'],
                 "hashed_email": hashed_email,
-                "hashed_password": hashed_password
+                "hashed_password": hashed_password,
+                "access_token": access_token,
+                "token_type": "bearer"
             }
         else:
             print("Login failed - Invalid credentials")
@@ -77,6 +89,7 @@ async def auto_login(credentials: AutoLoginRequest):
     API endpoint to handle automatic login using stored hashed credentials
     Accepts hashed email and password from localStorage
     Validates directly against database without additional hashing
+    Returns JWT access token for API authentication
     """
     print(f"Auto-login attempt with hashed credentials")
     print(f"Hashed Email: {credentials.hashed_email}")
@@ -98,13 +111,23 @@ async def auto_login(credentials: AutoLoginRequest):
                 print(f"Auto-login failed - Account is deactivated: {user['username']}")
                 raise HTTPException(status_code=403, detail="Account is deactivated. Please contact administrator.")
             
+            access_token = create_access_token(
+                data={
+                    "user_id": str(user['id']),
+                    "username": user['username'],
+                    "role": "admin"
+                }
+            )
+            
             print(f"Auto-login successful for user: {user['username']}")
             return {
                 "status": "success",
                 "message": "Auto-login successful",
                 "username": user['username'],
                 "hashed_email": credentials.hashed_email,
-                "hashed_password": credentials.hashed_password
+                "hashed_password": credentials.hashed_password,
+                "access_token": access_token,
+                "token_type": "bearer"
             }
         else:
             print("Auto-login failed - Invalid credentials")

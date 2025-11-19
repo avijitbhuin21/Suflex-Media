@@ -40,6 +40,7 @@ CREATE TABLE IF NOT EXISTS case_studies (
     type VARCHAR(50) NOT NULL DEFAULT 'CASE STUDY',
     date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     keyword JSONB,
+    preview JSONB,
     editors_choice VARCHAR(1) DEFAULT 'N',
     redirect_url TEXT,
     isDeleted BOOLEAN DEFAULT FALSE,
@@ -53,4 +54,5 @@ CREATE INDEX IF NOT EXISTS idx_case_studies_date ON case_studies(date DESC) WHER
 CREATE INDEX IF NOT EXISTS idx_case_studies_slug ON case_studies(slug) WHERE isDeleted = FALSE;
 CREATE INDEX IF NOT EXISTS idx_case_studies_isDeleted ON case_studies(isDeleted);
 CREATE INDEX IF NOT EXISTS idx_case_studies_keyword ON case_studies USING GIN(keyword);
+CREATE INDEX IF NOT EXISTS idx_case_studies_preview ON case_studies USING GIN(preview);
 CREATE INDEX IF NOT EXISTS idx_case_studies_blog ON case_studies USING GIN(blog);

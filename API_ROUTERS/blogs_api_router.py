@@ -1,35 +1,64 @@
-from fastapi import APIRouter, HTTPException, Query, Request
-from pydantic import BaseModel
+import logging
+from fastapi import APIRouter, HTTPException, Query, Request, Depends
+from pydantic import BaseModel, field_validator, ValidationError
 from typing import Optional, Dict, Any, List
 import asyncpg
-import os
 import json
 import re
-from dotenv import load_dotenv
+from DATABASE_HANDLER.auth import require_admin
+from DATABASE_HANDLER.utils.shared_utils import generate_slug, ensure_unique_slug
+from config import config, StatusConstants, ContentTypeConstants
 
-load_dotenv()
-
+logger = logging.getLogger(__name__)
 router = APIRouter(prefix="/api", tags=["Blogs Management"])
 
-DATABASE_URL = os.getenv("POSTGRES_CONNECTION_URL")
-
-def generate_slug(title: str) -> str:
-    """
-    Generate a URL-friendly slug from a title
-    """
-    slug = title.lower()
-    slug = re.sub(r'[^a-z0-9\s-]', '', slug)
-    slug = re.sub(r'\s+', '-', slug)
-    slug = re.sub(r'-+', '-', slug)
-    return slug.strip('-')
+DATABASE_URL = config.DATABASE_URL
 
 class CreateBlogRequest(BaseModel):
     blog: Dict[str, Any]
-    status: str = "draft"
+    status: str = StatusConstants.DRAFT
     keyword: Optional[Dict[str, Any]] = None
     editors_choice: Optional[str] = 'N'
     slug: Optional[str] = None
     redirect_url: Optional[str] = None
+
+    @field_validator('blog')
+    @classmethod
+    def validate_blog_not_empty(cls, v):
+        if not v or not isinstance(v, dict):
+            raise ValueError('Blog content must be a non-empty dictionary')
+        return v
+
+    @field_validator('status')
+    @classmethod
+    def validate_status(cls, v):
+        valid_statuses = [StatusConstants.DRAFT, StatusConstants.PUBLISHED, StatusConstants.ARCHIVED]
+        if v not in valid_statuses:
+            raise ValueError(f'Status must be one of: {", ".join(valid_statuses)}')
+        return v
+
+    @field_validator('editors_choice')
+    @classmethod
+    def validate_editors_choice(cls, v):
+        if v is not None and v not in ['Y', 'N']:
+            raise ValueError('editors_choice must be either "Y" or "N"')
+        return v
+
+    @field_validator('slug')
+    @classmethod
+    def validate_slug(cls, v):
+        if v is not None:
+            if not re.match(r'^[a-z0-9]+(?:-[a-z0-9]+)*$', v):
+                raise ValueError('Slug must be lowercase alphanumeric with hyphens only')
+        return v
+
+    @field_validator('redirect_url')
+    @classmethod
+    def validate_redirect_url(cls, v):
+        if v is not None and v.strip():
+            if not re.match(r'^https?://', v):
+                raise ValueError('Redirect URL must start with http:// or https://')
+        return v
 
 class UpdateBlogRequest(BaseModel):
     blog: Optional[Dict[str, Any]] = None
@@ -38,6 +67,45 @@ class UpdateBlogRequest(BaseModel):
     editors_choice: Optional[str] = None
     slug: Optional[str] = None
     redirect_url: Optional[str] = None
+
+    @field_validator('blog')
+    @classmethod
+    def validate_blog_not_empty(cls, v):
+        if v is not None and (not v or not isinstance(v, dict)):
+            raise ValueError('Blog content must be a non-empty dictionary if provided')
+        return v
+
+    @field_validator('status')
+    @classmethod
+    def validate_status(cls, v):
+        if v is not None:
+            valid_statuses = [StatusConstants.DRAFT, StatusConstants.PUBLISHED, StatusConstants.ARCHIVED]
+            if v not in valid_statuses:
+                raise ValueError(f'Status must be one of: {", ".join(valid_statuses)}')
+        return v
+
+    @field_validator('editors_choice')
+    @classmethod
+    def validate_editors_choice(cls, v):
+        if v is not None and v not in ['Y', 'N']:
+            raise ValueError('editors_choice must be either "Y" or "N"')
+        return v
+
+    @field_validator('slug')
+    @classmethod
+    def validate_slug(cls, v):
+        if v is not None and v.strip():
+            if not re.match(r'^[a-z0-9]+(?:-[a-z0-9]+)*$', v):
+                raise ValueError('Slug must be lowercase alphanumeric with hyphens only')
+        return v
+
+    @field_validator('redirect_url')
+    @classmethod
+    def validate_redirect_url(cls, v):
+        if v is not None and v.strip():
+            if not re.match(r'^https?://', v):
+                raise ValueError('Redirect URL must start with http:// or https://')
+        return v
 
 @router.get("/blogs")
 async def get_blogs(include_deleted: bool = Query(False, description="Include soft-deleted blogs")):
@@ -53,13 +121,14 @@ async def get_blogs(include_deleted: bool = Query(False, description="Include so
             query = """
                 SELECT id, blog, status, date, keyword, slug, type, redirect_url, isdeleted, created_at, updated_at
                 FROM blogs
+                WHERE type = '{ContentTypeConstants.BLOG}'
                 ORDER BY date DESC
             """
         else:
             query = """
                 SELECT id, blog, status, date, keyword, slug, type, redirect_url, isdeleted, created_at, updated_at
                 FROM blogs
-                WHERE isdeleted = FALSE
+                WHERE isdeleted = FALSE AND type = '{ContentTypeConstants.BLOG}'
                 ORDER BY date DESC
             """
         
@@ -87,21 +156,21 @@ async def get_blogs(include_deleted: bool = Query(False, description="Include so
         return {"status": "success", "blogs": blogs_list, "count": len(blogs_list)}
         
     except asyncpg.PostgresError as e:
-        print(f"Database error: {e}")
+        logger.error(f"Database error in get_blogs: {e}")
         raise HTTPException(status_code=500, detail="Database error occurred")
     except Exception as e:
-        print(f"Unexpected error: {e}")
+        logger.error(f"Unexpected error in get_blogs: {e}")
         raise HTTPException(status_code=500, detail="Internal server error")
 
 
 @router.post("/blogs", status_code=201)
-async def create_blog(blog_data: CreateBlogRequest):
+async def create_blog(blog_data: CreateBlogRequest, current_user: Dict[str, Any] = Depends(require_admin)):
     """
     Create a new blog
     Requires blog content as JSONB
-    Optional fields: status, keyword, category, redirect_url
+    Optional fields: status, keyword, redirect_url
     """
-    print(f"Creating new blog with status: {blog_data.status}")
+    logger.info(f"Creating new blog with status: {blog_data.status}")
     
     if not blog_data.blog:
         raise HTTPException(status_code=400, detail="Blog content is required")
@@ -111,7 +180,7 @@ async def create_blog(blog_data: CreateBlogRequest):
         
         # Extract the type from blog data if it exists
         blog_content = blog_data.blog.copy() if blog_data.blog else {}
-        content_type = blog_content.get('contentType', 'BLOG')
+        content_type = blog_content.get('contentType', ContentTypeConstants.BLOG)
         
         new_blog = await conn.fetchrow(
             """
@@ -130,7 +199,7 @@ async def create_blog(blog_data: CreateBlogRequest):
         
         await conn.close()
         
-        print(f"Blog created successfully with ID: {new_blog['id']}")
+        logger.info(f"Blog created successfully with ID: {new_blog['id']}")
         return {
             "status": "success",
             "message": "Blog created successfully",
@@ -151,20 +220,20 @@ async def create_blog(blog_data: CreateBlogRequest):
         }
         
     except asyncpg.PostgresError as e:
-        print(f"Database error: {e}")
+        logger.error(f"Database error in create_blog: {e}")
         raise HTTPException(status_code=500, detail="Database error occurred")
     except Exception as e:
-        print(f"Unexpected error: {e}")
+        logger.error(f"Unexpected error in create_blog: {e}")
         raise HTTPException(status_code=500, detail="Internal server error")
 
 @router.put("/blogs/{blog_id}")
-async def update_blog(blog_id: str, blog_data: UpdateBlogRequest):
+async def update_blog(blog_id: str, blog_data: UpdateBlogRequest, current_user: Dict[str, Any] = Depends(require_admin)):
     """
     Update an existing blog
     Only updates provided fields (partial update)
     Cannot update soft-deleted blogs
     """
-    print(f"Updating blog ID: {blog_id}")
+    logger.info(f"Updating blog ID: {blog_id}")
     
     try:
         conn = await asyncpg.connect(DATABASE_URL)
@@ -233,7 +302,7 @@ async def update_blog(blog_id: str, blog_data: UpdateBlogRequest):
         updated_blog = await conn.fetchrow(query, *update_values)
         await conn.close()
         
-        print(f"Blog updated successfully: {blog_id}")
+        logger.info(f"Blog updated successfully: {blog_id}")
         return {
             "status": "success",
             "message": "Blog updated successfully",
@@ -245,7 +314,7 @@ async def update_blog(blog_id: str, blog_data: UpdateBlogRequest):
                 "keyword": updated_blog['keyword'],
                 "category": updated_blog['blog'].get('blogCategory', 'General') if isinstance(updated_blog['blog'], dict) else json.loads(updated_blog['blog']).get('blogCategory', 'General'),
                 "slug": updated_blog['slug'],
-                "type": updated_blog['type'],  # Added type field
+                "type": updated_blog['type'],
                 "redirect_url": updated_blog['redirect_url'],
                 "isdeleted": updated_blog['isdeleted'],
                 "created_at": updated_blog['created_at'].isoformat() if updated_blog['created_at'] else None,
@@ -256,14 +325,14 @@ async def update_blog(blog_id: str, blog_data: UpdateBlogRequest):
     except HTTPException:
         raise
     except asyncpg.PostgresError as e:
-        print(f"Database error: {e}")
+        logger.error(f"Database error in update_blog: {e}")
         raise HTTPException(status_code=500, detail="Database error occurred")
     except Exception as e:
-        print(f"Unexpected error: {e}")
+        logger.error(f"Unexpected error in update_blog: {e}")
         raise HTTPException(status_code=500, detail="Internal server error")
 
 @router.patch("/blogs/{blog_id}")
-async def partial_update_blog(blog_id: str, blog_data: UpdateBlogRequest):
+async def partial_update_blog(blog_id: str, blog_data: UpdateBlogRequest, current_user: Dict[str, Any] = Depends(require_admin)):
     """
     Partial update of an existing blog (alias for PUT endpoint)
     Only updates provided fields
@@ -272,19 +341,18 @@ async def partial_update_blog(blog_id: str, blog_data: UpdateBlogRequest):
     return await update_blog(blog_id, blog_data)
 
 @router.delete("/blogs/{blog_id}")
-async def delete_blog(blog_id: str):
+async def delete_blog(blog_id: str, current_user: Dict[str, Any] = Depends(require_admin)):
     """
-    Soft delete a blog
-    Sets isdeleted to TRUE instead of removing from database
-    Cannot delete already deleted blogs
+    Permanently delete a blog from the database
+    This action cannot be undone
     """
-    print(f"Soft deleting blog ID: {blog_id}")
+    logger.warning(f"Permanently deleting blog ID: {blog_id}")
     
     try:
         conn = await asyncpg.connect(DATABASE_URL)
         
         blog = await conn.fetchrow(
-            "SELECT id, isdeleted FROM blogs WHERE id = $1",
+            "SELECT id FROM blogs WHERE id = $1",
             blog_id
         )
         
@@ -292,22 +360,14 @@ async def delete_blog(blog_id: str):
             await conn.close()
             raise HTTPException(status_code=404, detail="Blog not found")
         
-        if blog['isdeleted']:
-            await conn.close()
-            raise HTTPException(status_code=400, detail="Blog is already deleted")
-        
         await conn.execute(
-            """
-            UPDATE blogs
-            SET isdeleted = TRUE, updated_at = CURRENT_TIMESTAMP
-            WHERE id = $1
-            """,
+            "DELETE FROM blogs WHERE id = $1",
             blog_id
         )
         
         await conn.close()
         
-        print(f"Blog soft deleted successfully: {blog_id}")
+        logger.info(f"Blog permanently deleted successfully: {blog_id}")
         return {
             "status": "success",
             "message": "Blog deleted successfully"
@@ -316,19 +376,19 @@ async def delete_blog(blog_id: str):
     except HTTPException:
         raise
     except asyncpg.PostgresError as e:
-        print(f"Database error: {e}")
+        logger.error(f"Database error in delete_blog: {e}")
         raise HTTPException(status_code=500, detail="Database error occurred")
     except Exception as e:
-        print(f"Unexpected error: {e}")
+        logger.error(f"Unexpected error in delete_blog: {e}")
         raise HTTPException(status_code=500, detail="Internal server error")
 
 @router.post("/blogs/{blog_id}/restore")
-async def restore_blog(blog_id: str):
+async def restore_blog(blog_id: str, current_user: Dict[str, Any] = Depends(require_admin)):
     """
     Restore a soft-deleted blog
     Sets isdeleted back to FALSE
     """
-    print(f"Restoring blog ID: {blog_id}")
+    logger.info(f"Restoring blog ID: {blog_id}")
     
     try:
         conn = await asyncpg.connect(DATABASE_URL)
@@ -357,7 +417,7 @@ async def restore_blog(blog_id: str):
         
         await conn.close()
         
-        print(f"Blog restored successfully: {blog_id}")
+        logger.info(f"Blog restored successfully: {blog_id}")
         return {
             "status": "success",
             "message": "Blog restored successfully"
@@ -366,14 +426,14 @@ async def restore_blog(blog_id: str):
     except HTTPException:
         raise
     except asyncpg.PostgresError as e:
-        print(f"Database error: {e}")
+        logger.error(f"Database error in restore_blog: {e}")
         raise HTTPException(status_code=500, detail="Database error occurred")
     except Exception as e:
-        print(f"Unexpected error: {e}")
+        logger.error(f"Unexpected error in restore_blog: {e}")
         raise HTTPException(status_code=500, detail="Internal server error")
 
 @router.post("/admin_save_blog")
-async def admin_save_blog(request: Request):
+async def admin_save_blog(request: Request, current_user: Dict[str, Any] = Depends(require_admin)):
     """
     Save blog from admin panel (Draft or Publish)
     Receives complete blog data from frontend and saves to database
@@ -383,14 +443,12 @@ async def admin_save_blog(request: Request):
     try:
         data = await request.json()
         
-        print("=" * 80)
-        print("RECEIVED BLOG DATA FROM FRONTEND:")
-        print("=" * 80)
-        print(json.dumps(data, indent=2))
-        print("=" * 80)
-        print(f"Data keys: {list(data.keys())}")
-        print(f"Status field: {data.get('blogStatus', 'NOT FOUND')}")
-        print("=" * 80)
+        logger.debug("=" * 80)
+        logger.debug("RECEIVED BLOG DATA FROM FRONTEND:")
+        logger.debug(json.dumps(data, indent=2))
+        logger.debug(f"Data keys: {list(data.keys())}")
+        logger.debug(f"Status field: {data.get('blogStatus', 'NOT FOUND')}")
+        logger.debug("=" * 80)
         
         blog_title = data.get('blogTitle', '')
         if not blog_title:
@@ -401,9 +459,8 @@ async def admin_save_blog(request: Request):
         reason = data.get('reason', 'create')  # 'create' or 'update'
         
         slug = generate_slug(blog_title)
-        blog_status = data.get('blogStatus', 'draft')
-        blog_category = data.get('blogCategory', None)
-        content_type = data.get('contentType', 'BLOG')
+        blog_status = data.get('blogStatus', StatusConstants.DRAFT)
+        content_type = data.get('contentType', ContentTypeConstants.BLOG)
         
         # Add the content type to the blog data for storage
         data['contentType'] = content_type
@@ -442,7 +499,7 @@ async def admin_save_blog(request: Request):
                                 blog_id
                             )
                             counter += 1
-                        print(f"Generated unique slug: {slug}")
+                        logger.info(f"Generated unique slug: {slug}")
                 
                 # Update existing blog
                 updated_blog = await conn.fetchrow(
@@ -464,41 +521,20 @@ async def admin_save_blog(request: Request):
                     raise HTTPException(status_code=404, detail="Blog not found for update")
                 
                 blog_id = str(updated_blog['id'])
-                blog_url = f"http://localhost:5000/blog/{slug}"
+                blog_url = f"{config.BACKEND_URL}/blog/{slug}"
                 
-                print(f"Blog updated successfully with ID: {blog_id}")
-                print(f"Blog slug: {slug}")
-                print(f"Blog status: {blog_status}")
-                print(f"Blog type: {content_type}")
-                print(f"Blog URL: {blog_url}")
-                print("=" * 80)
+                logger.info(f"Blog updated successfully - ID: {blog_id}, slug: {slug}, status: {blog_status}, type: {content_type}, URL: {blog_url}")
                 
                 return {
                     "status": "success",
-                    "message": f"Blog {'published' if blog_status == 'published' else 'updated'} successfully",
+                    "message": f"Blog {'published' if blog_status == StatusConstants.PUBLISHED else 'updated'} successfully",
                     "blog_id": blog_id,
                     "slug": slug,
                     "url": blog_url
                 }
             else:
-                # Create new blog - check for existing slug to ensure uniqueness
-                existing_blog = await conn.fetchrow(
-                    "SELECT id FROM blogs WHERE slug = $1 AND isdeleted = FALSE",
-                    slug
-                )
+                slug = await ensure_unique_slug(conn, slug, "blogs")
                 
-                if existing_blog:
-                    original_slug = slug
-                    counter = 1
-                    while existing_blog:
-                        slug = f"{original_slug}-{counter}"
-                        existing_blog = await conn.fetchrow(
-                            "SELECT id FROM blogs WHERE slug = $1 AND isdeleted = FALSE",
-                            slug
-                        )
-                        counter += 1
-                    print(f"Generated unique slug: {slug}")
-            
                 new_blog = await conn.fetchrow(
                     """
                     INSERT INTO blogs (blog, status, editors_choice, slug, type, isdeleted)
@@ -513,18 +549,13 @@ async def admin_save_blog(request: Request):
                 )
                 
                 blog_id = str(new_blog['id'])
-                blog_url = f"http://localhost:5000/blog/{slug}"
+                blog_url = f"{config.BACKEND_URL}/blog/{slug}"
                 
-                print(f"Blog saved successfully with ID: {blog_id}")
-                print(f"Blog slug: {slug}")
-                print(f"Blog status: {blog_status}")
-                print(f"Blog type: {content_type}")
-                print(f"Blog URL: {blog_url}")
-                print("=" * 80)
+                logger.info(f"Blog saved successfully - ID: {blog_id}, slug: {slug}, status: {blog_status}, type: {content_type}, URL: {blog_url}")
                 
                 return {
                     "status": "success",
-                    "message": f"Blog {'published' if blog_status == 'published' else 'saved as draft'} successfully",
+                    "message": f"Blog {'published' if blog_status == StatusConstants.PUBLISHED else 'saved as draft'} successfully",
                     "blog_id": blog_id,
                     "slug": slug,
                     "url": blog_url
@@ -536,12 +567,12 @@ async def admin_save_blog(request: Request):
     except HTTPException:
         raise
     except asyncpg.UniqueViolationError:
-        print(f"Slug already exists")
+        logger.warning("Slug already exists")
         raise HTTPException(status_code=400, detail="A blog with this title already exists")
     except asyncpg.PostgresError as e:
-        print(f"Database error: {e}")
+        logger.error(f"Database error in admin_save_blog: {e}")
         raise HTTPException(status_code=500, detail="Database error occurred")
     except Exception as e:
-        print(f"Unexpected error in admin_save_blog: {e}")
+        logger.error(f"Unexpected error in admin_save_blog: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 

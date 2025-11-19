@@ -1,25 +1,29 @@
 import os
+import logging
 import asyncpg
 from dotenv import load_dotenv
 from .utils import sha256_hash
 
+logger = logging.getLogger(__name__)
 load_dotenv()
 
 # Get database URL from environment
 DATABASE_URL = os.getenv("POSTGRES_CONNECTION_URL")
 
 async def ensure_admin_user(conn):
+    """
+    Ensure the default admin user exists in the database.
+    Creates the admin user if it doesn't already exist.
+    """
     try:
-        # Check if admin user exists
         admin_exists = await conn.fetchval(
             "SELECT EXISTS(SELECT 1 FROM admin_users WHERE username = $1)",
             "admin"
         )
         
         if admin_exists:
-            print("✓ Admin user already exists")
+            logger.info("Admin user already exists")
         else:
-            # Create admin user
             await conn.execute(
                 """
                 INSERT INTO admin_users (email, username, password)
@@ -29,10 +33,10 @@ async def ensure_admin_user(conn):
                 "admin",
                 sha256_hash("admin")
             )
-            print("✓ Default admin user created successfully")
+            logger.info("Default admin user created successfully")
             
     except asyncpg.PostgresError as e:
-        print(f"✗ Error ensuring admin user: {e}")
+        logger.error(f"Error ensuring admin user: {e}")
         raise
 
 async def initialize_database():
@@ -41,37 +45,32 @@ async def initialize_database():
     Creates tables if they don't exist.
     """
     try:
-        # Connect to the database
         conn = await asyncpg.connect(DATABASE_URL)
         
-        # Read the SQL file
         sql_file_path = os.path.join(os.path.dirname(__file__), 'init_db.sql')
         with open(sql_file_path, 'r') as f:
             sql_script = f.read()
         
         sql_script = sql_script.strip()
         if sql_script == "":
-            print("No SQL commands found in init_db.sql")
-            print("✓ Database tables initialized successfully (no changes made)")
+            logger.warning("No SQL commands found in init_db.sql")
+            logger.info("Database tables initialized successfully (no changes made)")
         else:
-            print("✓ SQL script loaded successfully")
-            # Execute the SQL script
+            logger.info("SQL script loaded successfully")
             await conn.execute(sql_script)
-            print("✓ Database tables initialized successfully")
+            logger.info("Database tables initialized successfully")
 
-            # Ensure the default admin user exists
             await ensure_admin_user(conn)
-            print("✓ Admin user check completed")
+            logger.info("Admin user check completed")
         
-        # Close the connection
         await conn.close()
         
     except FileNotFoundError:
-        print("✗ Error: init_db.sql file not found")
+        logger.error("Error: init_db.sql file not found")
         raise
     except asyncpg.PostgresError as e:
-        print(f"✗ Database error during initialization: {e}")
+        logger.error(f"Database error during initialization: {e}")
         raise
     except Exception as e:
-        print(f"✗ Unexpected error during database initialization: {e}")
+        logger.error(f"Unexpected error during database initialization: {e}")
         raise

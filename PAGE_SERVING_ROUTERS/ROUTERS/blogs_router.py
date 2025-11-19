@@ -2,7 +2,7 @@ from fastapi import APIRouter, Request
 from fastapi.responses import HTMLResponse
 import os
 from dotenv import load_dotenv
-from generate_blog_sections import get_blogs_html # Import the new function
+from DATABASE_HANDLER.utils import get_blogs_html # Import the new function
 
 load_dotenv()
 

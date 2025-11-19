@@ -1,9 +1,11 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Depends
 from pydantic import BaseModel, EmailStr
+from typing import Dict, Any
 import asyncpg
 import os
 from dotenv import load_dotenv
 from DATABASE_HANDLER.utils.General_Functions import sha256_hash
+from DATABASE_HANDLER.auth import require_admin
 
 load_dotenv()
 
@@ -23,7 +25,7 @@ class UpdateStatusRequest(BaseModel):
     active: bool
 
 @router.get("/admin-users")
-async def get_admin_users():
+async def get_admin_users(current_user: Dict[str, Any] = Depends(require_admin)):
     """
     Get all admin users with their details
     Returns list of users without sensitive password information
@@ -63,7 +65,7 @@ async def get_admin_users():
         raise HTTPException(status_code=500, detail="Internal server error")
 
 @router.post("/admin-users")
-async def create_admin_user(user_data: CreateAdminUserRequest):
+async def create_admin_user(user_data: CreateAdminUserRequest, current_user: Dict[str, Any] = Depends(require_admin)):
     """
     Create a new admin user
     Hashes email and password before storing
@@ -123,7 +125,7 @@ async def create_admin_user(user_data: CreateAdminUserRequest):
         raise HTTPException(status_code=500, detail="Internal server error")
 
 @router.put("/admin-users/{user_id}")
-async def update_admin_user_password(user_id: str, password_data: UpdatePasswordRequest):
+async def update_admin_user_password(user_id: str, password_data: UpdatePasswordRequest, current_user: Dict[str, Any] = Depends(require_admin)):
     """
     Update admin user password
     Does not require old password - direct password reset
@@ -172,7 +174,7 @@ async def update_admin_user_password(user_id: str, password_data: UpdatePassword
         raise HTTPException(status_code=500, detail="Internal server error")
 
 @router.delete("/admin-users/{user_id}")
-async def delete_admin_user(user_id: str):
+async def delete_admin_user(user_id: str, current_user: Dict[str, Any] = Depends(require_admin)):
     """
     Delete an admin user
     Permanently removes the user from the database
@@ -214,7 +216,7 @@ async def delete_admin_user(user_id: str):
         raise HTTPException(status_code=500, detail="Internal server error")
 
 @router.patch("/admin-users/{user_id}/status")
-async def update_admin_user_status(user_id: str, status_data: UpdateStatusRequest):
+async def update_admin_user_status(user_id: str, status_data: UpdateStatusRequest, current_user: Dict[str, Any] = Depends(require_admin)):
     """
     Activate or deactivate an admin user
     When deactivated, user cannot login

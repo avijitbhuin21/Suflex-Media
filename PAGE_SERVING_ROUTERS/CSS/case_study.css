@@ -1,0 +1,239 @@
+:root {
+    --bg: #FBFAF7;
+    --bg-contrast: #ffffff;
+    --text: #1A1A1A;
+    --muted: #5f6368;
+    --accent: #5E4B8B;
+    /* editorial purple */
+    --accent-2: #E6E0F5;
+    --border: #E5E2DC;
+    --lead: #2b2b2b;
+    --success: #0B7A75;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.06), 0 4px 10px rgba(0, 0, 0, 0.04);
+    --radius: 14px;
+    --radius-sm: 10px;
+    --radius-lg: 22px;
+    --maxw: 940px;
+}
+
+html,
+body {
+    background: var(--bg);
+    color: var(--text);
+    margin: 0;
+    font-family: "Source Sans Pro", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+    line-height: 1.7;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.wrap {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 24px;
+}
+
+header.article-header {
+    margin-top: 18px;
+    margin-bottom: 28px;
+}
+
+.kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-2);
+    padding: 8px 12px;
+    border-radius: 999px;
+    font-weight: 700;
+}
+
+.dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    display: inline-block;
+}
+
+h1.title {
+    font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+    font-weight: 800;
+    font-size: clamp(32px, 5vw, 54px);
+    line-height: 1.15;
+    margin: 14px 0 8px;
+    letter-spacing: -0.01em;
+}
+
+.meta {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.hero {
+    margin: 28px 0 22px;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    background: var(--bg-contrast);
+}
+
+.hero figure {
+    margin: 0;
+    position: relative;
+    aspect-ratio: 16/9;
+    background: #ddd;
+}
+
+.hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.hero figcaption {
+    position: absolute;
+    inset: auto 0 0 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, .55) 100%);
+    color: #fff;
+    padding: 18px 18px 16px;
+    font-size: 13px;
+}
+
+.lead {
+    font-size: clamp(18px, 2.2vw, 20px);
+    color: var(--lead);
+    margin: 8px 0 24px;
+}
+
+
+.section {
+    margin: 36px 0 10px;
+}
+
+.section h2 {
+    font-family: "Playfair Display", Georgia, serif;
+    font-weight: 800;
+    font-size: clamp(22px, 3.2vw, 32px);
+    margin: 0 0 14px;
+    letter-spacing: -0.01em;
+}
+
+.section h3 {
+    font-family: "Playfair Display", Georgia, serif;
+    font-weight: 700;
+    font-size: clamp(18px, 2.4vw, 24px);
+    margin: 24px 0 6px;
+}
+
+.prose p {
+    margin: 0 0 10px;
+    font-size: 17px;
+}
+
+.impact-list {
+    list-style: disc;
+    padding-left: 24px;
+    margin: 12px 0 0;
+}
+
+.impact-item {
+    font-size: 17px;
+    line-height: 1.6;
+    margin-bottom: 8px;
+}
+
+.quote {
+    border-left: 4px solid var(--accent);
+    background: var(--bg-contrast);
+    border-radius: var(--radius);
+    padding: 18px 18px 18px 16px;
+    margin: 16px 0;
+    box-shadow: var(--shadow);
+}
+
+blockquote {
+    margin: 0;
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: clamp(18px, 2.4vw, 22px);
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+.quote small {
+    display: block;
+    margin-top: 10px;
+    color: var(--muted);
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.process {
+    margin: 12px 0;
+}
+
+.process p {
+    margin: 0 0 12px;
+    font-size: 17px;
+    line-height: 1.7;
+}
+
+.steps {
+    list-style: decimal;
+    padding-left: 24px;
+    margin: 0;
+}
+
+.steps li {
+    font-size: 17px;
+    line-height: 1.6;
+    margin-bottom: 8px;
+}
+
+.result {
+    margin-top: 12px;
+}
+
+.result p {
+    margin: 0 0 12px;
+    font-size: 17px;
+    line-height: 1.7;
+}
+
+.result p:last-child {
+    margin-bottom: 0;
+}
+
+.result-quote {
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: clamp(18px, 2.2vw, 20px);
+    font-style: italic;
+    color: var(--lead);
+    margin-top: 12px;
+}
+
+footer.page-footer {
+    margin: 40px 0 26px;
+    color: var(--muted);
+    font-size: 14px;
+    text-align: center;
+}
+
+.visually-hidden {
+    position: absolute !important;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+    white-space: nowrap;
+}
