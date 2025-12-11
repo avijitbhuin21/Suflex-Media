@@ -23,9 +23,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const dropdown = document.querySelector('.dropdown');
     const dropdownToggle = document.querySelector('.dropdown-toggle');
-    
+
     if (dropdown && dropdownToggle) {
-        dropdownToggle.addEventListener('click', function(e) {
+        dropdownToggle.addEventListener('click', function (e) {
             e.preventDefault();
             e.stopPropagation();
             if (window.innerWidth <= 768) {
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
 
-        document.addEventListener('click', function(e) {
+        document.addEventListener('click', function (e) {
             if (window.innerWidth <= 768 && !dropdown.contains(e.target)) {
                 dropdown.classList.remove('active');
             }
@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 currentlyActive.classList.remove('active');
                 currentlyActive.querySelector('.icon').textContent = '+';
             }
-    
+
             item.classList.toggle('active');
             const icon = item.querySelector('.icon');
             if (item.classList.contains('active')) {
@@ -90,5 +90,43 @@ document.addEventListener('DOMContentLoaded', function () {
                 // No need to do anything here as getScrollAmount will be called on click
             });
         }
+    }
+
+    // Calendly lazy-loading to avoid third-party cookie issues
+    const loadCalendlyBtn = document.getElementById('load-calendly-btn');
+    const calendlyPlaceholder = document.getElementById('calendly-placeholder');
+    const calendlyWidget = document.getElementById('calendly-widget');
+
+    if (loadCalendlyBtn && calendlyPlaceholder && calendlyWidget) {
+        loadCalendlyBtn.addEventListener('click', function () {
+            // Show loading state
+            loadCalendlyBtn.innerHTML = '<span>Loading calendar...</span>';
+            loadCalendlyBtn.disabled = true;
+
+            // Load Calendly script dynamically
+            const script = document.createElement('script');
+            script.src = 'https://assets.calendly.com/assets/external/widget.js';
+            script.async = true;
+            script.onload = function () {
+                // Hide placeholder and show widget
+                calendlyPlaceholder.style.display = 'none';
+                calendlyWidget.style.display = 'block';
+
+                // Initialize Calendly widget
+                if (typeof Calendly !== 'undefined') {
+                    Calendly.initInlineWidget({
+                        url: 'https://calendly.com/bhuinavijit21/new-meeting',
+                        parentElement: calendlyWidget,
+                        prefill: {},
+                        utm: {}
+                    });
+                }
+            };
+            script.onerror = function () {
+                loadCalendlyBtn.innerHTML = '<span>Failed to load. Click to retry.</span>';
+                loadCalendlyBtn.disabled = false;
+            };
+            document.head.appendChild(script);
+        });
     }
 });

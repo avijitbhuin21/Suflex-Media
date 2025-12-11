@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <link rel="icon" type="image/png" href="/images/logo_header.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Permissions Policy to prevent payment API warning -->
+    <meta http-equiv="Permissions-Policy" content="payment=()">
     <title>Suflex Media - Digital Marketing & Branding Agency | 300+ Customers Served</title>
     <meta name="description"
         content="Suflex Media is a full-service digital marketing and branding agency. We specialize in book writing, LinkedIn branding, content writing, performance marketing, website development, and SEO. 300+ customers served.">
@@ -338,7 +340,17 @@
                 <h2>Ready to <span>work</span> with us?</h2>
             </div>
             <div class="booking-main">
-                <div class="calendly-inline-widget" data-url="https://calendly.com/bhuinavijit21/new-meeting"></div>
+                <!-- Calendly widget loads on user interaction to avoid third-party cookie issues -->
+                <div id="calendly-container">
+                    <div id="calendly-placeholder" class="calendly-placeholder">
+                        <button id="load-calendly-btn" class="load-calendly-btn" type="button">
+                            <span>📅 Click to Load Booking Calendar</span>
+                            <small>Loads Calendly scheduling widget</small>
+                        </button>
+                    </div>
+                    <div class="calendly-inline-widget" id="calendly-widget"
+                        data-url="https://calendly.com/bhuinavijit21/new-meeting" style="display: none;"></div>
+                </div>
             </div>
         </section>
 
@@ -471,7 +483,7 @@
         });
     </script>
     <script src="/js/home.js"></script>
-    <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+    <!-- Calendly script loaded dynamically when user clicks to load calendar -->
 
 </body>
 
