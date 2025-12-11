@@ -42,6 +42,26 @@
     <!-- Preload hero background for faster LCP -->
     <link rel="preload" as="image" href="/images/bg-hero.webp">
     <script src="https://unpkg.com/lucide@latest" defer></script>
+
+    <!-- Meta Pixel Code -->
+    <script>
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+            n.queue = []; t = b.createElement(e); t.async = !0;
+            t.src = v; s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '710111701297517');
+        fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+            src="https://www.facebook.com/tr?id=710111701297517&ev=PageView&noscript=1" /></noscript>
+    <!-- End Meta Pixel Code -->
 </head>
 
 <body>
@@ -340,16 +360,7 @@
                 <h2>Ready to <span>work</span> with us?</h2>
             </div>
             <div class="booking-main">
-                <!-- Calendly widget loads on user interaction to avoid third-party cookie issues -->
-                <div id="calendly-container">
-                    <div id="calendly-placeholder" class="calendly-placeholder">
-                        <button id="load-calendly-btn" class="load-calendly-btn" type="button">
-                            <span>📅 Click to Load Booking Calendar</span>
-                            <small>Loads Calendly scheduling widget</small>
-                        </button>
-                    </div>
-                    <div class="calendly-inline-widget" id="calendly-widget"
-                        data-url="https://calendly.com/bhuinavijit21/new-meeting" style="display: none;"></div>
+                <div class="calendly-inline-widget" data-url="https://calendly.com/suflex-media/linkedin-strategy-call">
                 </div>
             </div>
         </section>
@@ -483,7 +494,7 @@
         });
     </script>
     <script src="/js/home.js"></script>
-    <!-- Calendly script loaded dynamically when user clicks to load calendar -->
+    <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
 
 </body>
 

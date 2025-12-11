@@ -91,42 +91,4 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         }
     }
-
-    // Calendly lazy-loading to avoid third-party cookie issues
-    const loadCalendlyBtn = document.getElementById('load-calendly-btn');
-    const calendlyPlaceholder = document.getElementById('calendly-placeholder');
-    const calendlyWidget = document.getElementById('calendly-widget');
-
-    if (loadCalendlyBtn && calendlyPlaceholder && calendlyWidget) {
-        loadCalendlyBtn.addEventListener('click', function () {
-            // Show loading state
-            loadCalendlyBtn.innerHTML = '<span>Loading calendar...</span>';
-            loadCalendlyBtn.disabled = true;
-
-            // Load Calendly script dynamically
-            const script = document.createElement('script');
-            script.src = 'https://assets.calendly.com/assets/external/widget.js';
-            script.async = true;
-            script.onload = function () {
-                // Hide placeholder and show widget
-                calendlyPlaceholder.style.display = 'none';
-                calendlyWidget.style.display = 'block';
-
-                // Initialize Calendly widget
-                if (typeof Calendly !== 'undefined') {
-                    Calendly.initInlineWidget({
-                        url: 'https://calendly.com/bhuinavijit21/new-meeting',
-                        parentElement: calendlyWidget,
-                        prefill: {},
-                        utm: {}
-                    });
-                }
-            };
-            script.onerror = function () {
-                loadCalendlyBtn.innerHTML = '<span>Failed to load. Click to retry.</span>';
-                loadCalendlyBtn.disabled = false;
-            };
-            document.head.appendChild(script);
-        });
-    }
 });
