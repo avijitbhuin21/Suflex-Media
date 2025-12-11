@@ -31,8 +31,14 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet"
+        media="print" onload="this.media='all'">
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+    </noscript>
     <link rel="stylesheet" href="/css/home.css">
+    <!-- Preload hero background for faster LCP -->
+    <link rel="preload" as="image" href="/images/bg-hero.webp">
     <script src="https://unpkg.com/lucide@latest" defer></script>
 </head>
 
@@ -40,7 +46,7 @@
 
     <header class="header">
         <div class="logo">
-            <img src="/images/logo_header.png" alt="Suflex Media Logo">
+            <img src="/images/logo_header.png" alt="Suflex Media Logo" width="173" height="72">
         </div>
         <nav class="nav-links">
             <a href="/" class="active">Home</a>
@@ -59,12 +65,12 @@
             <a href="/case-studies">Case Studies</a>
             <a href="/blogs">Blog</a>
             <a href="/contact" class="contact-us">
-                <img src="/icons/phone-icon.png" alt="Phone icon" class="icon">
+                <img src="/icons/phone-icon.png" alt="Phone icon" class="icon" width="25" height="25">
                 <span>Contact Us</span>
             </a>
         </nav>
         <a href="/contact" class="contact-us">
-            <img src="/icons/phone-icon.png" alt="Phone icon" class="icon">
+            <img src="/icons/phone-icon.png" alt="Phone icon" class="icon" width="25" height="25">
             <span>Contact Us</span>
         </a>
         <div class="hamburger">
@@ -74,8 +80,8 @@
         </div>
     </header>
 
-    <div class="content-wrapper">
-        <img src="/images/bg-hero.webp" alt="" class="hero-bg-image">
+    <main class="content-wrapper" role="main">
+        <img src="/images/bg-hero.webp" alt="" class="hero-bg-image" width="1600" height="900">
 
         <section class="hero-section">
             <div class="hero-content">
@@ -88,7 +94,7 @@
                         <div class="cta-inner">
                             <span class="cta-text">Book a free strategy call</span>
                             <div class="cta-icon">
-                                <img src="/icons/arrow.png" alt="arrow">
+                                <img src="/icons/arrow.png" alt="arrow" width="20" height="15">
                             </div>
                         </div>
                     </a>
@@ -96,29 +102,34 @@
 
                 <div class="trusted-logos">
                     <div class="carousel-track">
-                        <img src="/images/scroll-1.svg" alt="Logo 1" loading="lazy">
-                        <img src="/images/scroll-2.png" alt="Logo 2" class="black-bg" loading="lazy">
-                        <img src="/images/scroll-3.png" alt="Logo 3" loading="lazy">
-                        <img src="/images/scroll-4.png" alt="Logo 4" loading="lazy">
-                        <img src="/images/scroll-6.png" alt="Logo 6" loading="lazy">
-                        <img src="/images/scroll-7.png" alt="Logo 7" loading="lazy">
-                        <img src="/images/scroll-8.png" alt="Logo 8" loading="lazy">
-                        <img src="/images/scroll-9.png" alt="Logo 9" loading="lazy">
-                        <img src="/images/scroll-10.png" alt="Logo 10" loading="lazy">
-                        <img src="/images/scroll-1.svg" alt="Logo 1" loading="lazy">
-                        <img src="/images/scroll-2.png" alt="Logo 2" class="black-bg" loading="lazy">
-                        <img src="/images/scroll-3.png" alt="Logo 3" loading="lazy">
-                        <img src="/images/scroll-4.png" alt="Logo 4" loading="lazy">
-                        <img src="/images/scroll-6.png" alt="Logo 6" loading="lazy">
-                        <img src="/images/scroll-7.png" alt="Logo 7" loading="lazy">
-                        <img src="/images/scroll-8.png" alt="Logo 8" loading="lazy">
-                        <img src="/images/scroll-9.png" alt="Logo 9" loading="lazy">
-                        <img src="/images/scroll-10.png" alt="Logo 10" loading="lazy">
+                        <img src="/images/scroll-1.svg" alt="Logo 1" loading="lazy" width="180" height="41">
+                        <img src="/images/scroll-2.png" alt="Logo 2" class="black-bg" loading="lazy" width="115"
+                            height="86">
+                        <img src="/images/scroll-3.png" alt="Logo 3" loading="lazy" width="180" height="59">
+                        <img src="/images/scroll-4.png" alt="Logo 4" loading="lazy" width="180" height="48">
+                        <img src="/images/scroll-6.png" alt="Logo 6" loading="lazy" width="180" height="45">
+                        <img src="/images/scroll-7.png" alt="Logo 7" loading="lazy" width="180" height="38">
+                        <img src="/images/scroll-8.png" alt="Logo 8" loading="lazy" width="180" height="41">
+                        <img src="/images/scroll-9.png" alt="Logo 9" loading="lazy" width="180" height="41">
+                        <img src="/images/scroll-10.png" alt="Logo 10" loading="lazy" width="180" height="38">
+                        <img src="/images/scroll-1.svg" alt="Logo 1" loading="lazy" width="180" height="41">
+                        <img src="/images/scroll-2.png" alt="Logo 2" class="black-bg" loading="lazy" width="115"
+                            height="86">
+                        <img src="/images/scroll-3.png" alt="Logo 3" loading="lazy" width="180" height="59">
+                        <img src="/images/scroll-4.png" alt="Logo 4" loading="lazy" width="180" height="48">
+                        <img src="/images/scroll-6.png" alt="Logo 6" loading="lazy" width="180" height="45">
+                        <img src="/images/scroll-7.png" alt="Logo 7" loading="lazy" width="180" height="38">
+                        <img src="/images/scroll-8.png" alt="Logo 8" loading="lazy" width="180" height="41">
+                        <img src="/images/scroll-9.png" alt="Logo 9" loading="lazy" width="180" height="41">
+                        <img src="/images/scroll-10.png" alt="Logo 10" loading="lazy" width="180" height="38">
                     </div>
                 </div>
 
                 <div class="side-card-left">
-                    <h3>Turning Ideas into Books</h3>
+                    <video autoplay loop muted playsinline aria-hidden="true">
+                        <source src="/images/idea.mp4" type="video/mp4">
+                    </video>
+                    <span class="card-title">Turning Ideas into Books</span>
                 </div>
 
                 <div class="stats-container">
@@ -126,12 +137,14 @@
                         <div class="stat-inner-left">
                             <div class="stat-text-left"><span class="stat-number">20+</span><br>Books
                                 Published<br>Annually</div>
-                            <img src="/images/hero_ghost.webp" alt="Ghost" class="stat-icon-left">
+                            <img src="/images/hero_ghost.webp" alt="Ghost" class="stat-icon-left" width="144"
+                                height="150">
                         </div>
                     </div>
                     <div class="stat-box-right">
                         <div class="stat-inner-right">
-                            <img src="/images/hero_cup.webp" alt="Trophy Cup" class="stat-icon-right">
+                            <img src="/images/hero_cup.webp" alt="Trophy Cup" class="stat-icon-right" width="180"
+                                height="152">
                             <div class="stat-text-right"><span class="stat-number">40+</span><br>Personal<br>Brands
                                 Built</div>
                         </div>
@@ -139,23 +152,31 @@
                 </div>
 
                 <div class="center-main-card">
-                    <video autoplay loop muted playsinline>
+                    <video autoplay loop muted playsinline class="desktop-video" aria-hidden="true">
+                        <source src="/images/thought_leaders.mp4" type="video/mp4">
+                    </video>
+                    <video autoplay loop muted playsinline class="mobile-video" aria-hidden="true">
                         <source src="/icons/mobile_thought_leader.mp4" type="video/mp4">
                     </video>
-                    <h3 class="desktop-text">Turning<br>Leaders into<br>Thought<br>Leaders</h3>
-                    <h3 class="mobile-text">Turning Leaders<br>into Thought<br>Leaders</h3>
+                    <span class="card-title desktop-text">Turning<br>Leaders into<br>Thought<br>Leaders</span>
+                    <span class="card-title mobile-text">Turning Leaders<br>into Thought<br>Leaders</span>
                 </div>
 
                 <div class="side-card-right">
-                    <h3>Turning Content into Lead Magnets</h3>
+                    <video autoplay loop muted playsinline aria-hidden="true">
+                        <source src="/images/lead_magnets.mp4" type="video/mp4">
+                    </video>
+                    <span class="card-title">Turning Content into Lead Magnets</span>
                 </div>
 
                 <!-- Mobile-only icons for hero section -->
                 <div class="mobile-hero-icons">
-                    <img src="/icons/bulb.png" alt="Bulb" class="mobile-icon bulb-icon">
-                    <img src="/icons/curved-arrow.png" alt="Curved Arrow" class="mobile-icon curved-arrow-icon">
-                    <img src="/icons/doodle-arrow.png" alt="Doodle Arrow" class="mobile-icon doodle-arrow-icon">
-                    <img src="/icons/doodle.png" alt="Doodle" class="mobile-icon doodle-icon">
+                    <img src="/icons/bulb.png" alt="Bulb" class="mobile-icon bulb-icon" width="48" height="48">
+                    <img src="/icons/curved-arrow.png" alt="Curved Arrow" class="mobile-icon curved-arrow-icon"
+                        width="48" height="48">
+                    <img src="/icons/doodle-arrow.png" alt="Doodle Arrow" class="mobile-icon doodle-arrow-icon"
+                        width="48" height="48">
+                    <img src="/icons/doodle.png" alt="Doodle" class="mobile-icon doodle-icon" width="28" height="28">
                 </div>
             </div>
         </section>
@@ -169,28 +190,30 @@
             <div class="work-with-us-content">
                 <div class="cards-bucket">
                     <div class="card card-1">
-                        <img src="/images/Frame1.jpg" alt="Breakthrough Idea" loading="lazy">
+                        <img src="/images/Frame1.jpg" alt="Breakthrough Idea" loading="lazy" width="280" height="186">
                         <h4>Got a Breakthrough Idea or Product?</h4>
                         <p>We'll match it with the audience that's craving something new—no empty promises.</p>
                         <p>We believe in smarter strategies and marketing that connect on a human level. When you work
                             with us, you're getting a partner who's as invested in your success as you are.</p>
                     </div>
                     <div class="card card-2">
-                        <img src="/images/Frame2.jpg" alt="Tired of Agencies Going Dark?" loading="lazy">
+                        <img src="/images/Frame2.jpg" alt="Tired of Agencies Going Dark?" loading="lazy" width="280"
+                            height="186">
                         <h4>Tired of Agencies Going Dark?</h4>
                         <p>We stick around until your brand thrives—no radio silence or silent treatments here.</p>
                         <p>From real-time reporting dashboards to on-call support, we keep you looped in every step of
                             the way. Transparency is our middle name.</p>
                     </div>
                     <div class="card card-3">
-                        <img src="/images/Frame3.jpg" alt="Marketing Missteps" loading="lazy">
+                        <img src="/images/Frame3.jpg" alt="Marketing Missteps" loading="lazy" width="280" height="210">
                         <h4>Done with Marketing Missteps?</h4>
                         <p>We turn setbacks into comebacks—no cookie-cutter solutions and guesswork.</p>
                         <p>Using advanced data analytics and proven tactics, we turn businesses around—focusing on
                             outcomes that move the needle and impact your bottom line.</p>
                     </div>
                     <div class="card card-4">
-                        <img src="/images/Frame4.jpg" alt="Time-Tested & Data-Driven" loading="lazy">
+                        <img src="/images/Frame4.jpg" alt="Time-Tested & Data-Driven" loading="lazy" width="280"
+                            height="168">
                         <h4>Time-Tested & Data-Driven</h4>
                         <p>We harness insights to fine-tune every campaign—no trial and error, just results.</p>
                         <p>With real-time reporting and open communication, you'll always know exactly where your
@@ -223,45 +246,47 @@
                 <div class="care-grid">
                     <a href="/ghostwriting" class="care-card">
                         <div class="card-left">
-                            <img src="/icons/BookWriting.png" alt="Book Writing Icon">
+                            <img src="/icons/BookWriting.png" alt="Book Writing Icon" width="87" height="87">
                             <p>Book<br>Writing</p>
                         </div>
-                        <img src="/icons/Blue-Arrow.png" alt="Arrow" class="card-arrow">
+                        <img src="/icons/Blue-Arrow.png" alt="Arrow" class="card-arrow" width="50" height="50">
                     </a>
                     <a href="/linkedin-branding" class="care-card">
                         <div class="card-left">
-                            <img src="/icons/LinkedinBranding.png" alt="LinkedIn Branding Icon">
+                            <img src="/icons/LinkedinBranding.png" alt="LinkedIn Branding Icon" width="87" height="87">
                             <p>LinkedIn<br>Branding</p>
                         </div>
-                        <img src="/icons/Blue-Arrow.png" alt="Arrow" class="card-arrow">
+                        <img src="/icons/Blue-Arrow.png" alt="Arrow" class="card-arrow" width="50" height="50">
                     </a>
                     <a href="/content-writing" class="care-card">
                         <div class="card-left">
-                            <img src="/icons/ContentWriting.png" alt="Content Writing Icon">
+                            <img src="/icons/ContentWriting.png" alt="Content Writing Icon" width="87" height="87">
                             <p>Content<br>Writing</p>
                         </div>
-                        <img src="/icons/Blue-Arrow.png" alt="Arrow" class="card-arrow">
+                        <img src="/icons/Blue-Arrow.png" alt="Arrow" class="card-arrow" width="50" height="50">
                     </a>
                     <a href="/performance-marketing" class="care-card">
                         <div class="card-left">
-                            <img src="/icons/PerformanceMarketing.png" alt="Performance Marketing Icon">
+                            <img src="/icons/PerformanceMarketing.png" alt="Performance Marketing Icon" width="87"
+                                height="87">
                             <p>Performance<br>Marketing</p>
                         </div>
-                        <img src="/icons/Blue-Arrow.png" alt="Arrow" class="card-arrow">
+                        <img src="/icons/Blue-Arrow.png" alt="Arrow" class="card-arrow" width="50" height="50">
                     </a>
                     <a href="/website-development" class="care-card">
                         <div class="card-left">
-                            <img src="/icons/WebDevelopment.png" alt="Web Development Icon">
+                            <img src="/icons/WebDevelopment.png" alt="Web Development Icon" width="87" height="87">
                             <p>Website<br>Development</p>
                         </div>
-                        <img src="/icons/Blue-Arrow.png" alt="Arrow" class="card-arrow">
+                        <img src="/icons/Blue-Arrow.png" alt="Arrow" class="card-arrow" width="50" height="50">
                     </a>
                     <a href="/seo" class="care-card">
                         <div class="card-left">
-                            <img src="/icons/GraphicDesign.png" alt="Search Engine Optimisation Icon">
+                            <img src="/icons/GraphicDesign.png" alt="Search Engine Optimisation Icon" width="87"
+                                height="87">
                             <p>Search Engine<br>Optimisation</p>
                         </div>
-                        <img src="/icons/Blue-Arrow.png" alt="Arrow" class="card-arrow">
+                        <img src="/icons/Blue-Arrow.png" alt="Arrow" class="card-arrow" width="50" height="50">
                     </a>
                 </div>
                 <button class="care-cta-button" onclick="location.href='/contact'">Book a free strategy call</button>
@@ -357,7 +382,7 @@
             </div>
         </div>
 
-    </div>
+    </main>
 
     <footer class="footer">
         <div class="footer-content">
@@ -386,11 +411,11 @@
             <div class="footer-section social-section">
                 <h3>Social Links</h3>
                 <div class="social-links">
-                    <a href="https://www.instagram.com/suflexmedia/"><img src="/icons/instagram.png"
-                            alt="Instagram"></a>
+                    <a href="https://www.instagram.com/suflexmedia/"><img src="/icons/instagram.png" alt="Instagram"
+                            width="33" height="33"></a>
                     <a href="https://www.linkedin.com/company/suflex-media/"><img src="/icons/linkedin.png"
-                            alt="LinkedIn"></a>
-                    <a href="#"><img src="/icons/x.png" alt="X"></a>
+                            alt="LinkedIn" width="33" height="33"></a>
+                    <a href="#"><img src="/icons/x.png" alt="X" width="33" height="33"></a>
                 </div>
             </div>
             <div class="footer-section contact-section">
@@ -400,7 +425,7 @@
         </div>
         <div class="footer-bottom">
             <div class="footer-logo">
-                <img src="/images/logo_header.png" alt="Suflex Media Logo">
+                <img src="/images/logo_header.png" alt="Suflex Media Logo" width="173" height="72">
             </div>
             <div class="copyright">
                 <p>Copyright © 2024 SuflexMedia | All Rights Reserved</p>

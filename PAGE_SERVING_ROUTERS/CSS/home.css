@@ -1,6 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap');
+/* Font loaded via <link> in HTML head - removed duplicate @imports for performance */
 
 * {
     margin: 0;
@@ -54,7 +52,7 @@ body {
 
 .nav-links a {
     text-decoration: none;
-    color: #808080;
+    color: #595959;
     font-size: 1.25vw;
     transition: color 0.3s ease;
 }
@@ -96,7 +94,7 @@ body {
 .dropdown-toggle {
     cursor: pointer;
     text-decoration: none;
-    color: #808080;
+    color: #595959;
     font-size: 1.25vw;
     transition: color 0.3s ease;
     display: inline-flex;
@@ -550,20 +548,32 @@ body {
     height: 100vh;
     left: 5vw;
     top: 58vh;
-    background: url('/images/idea.gif') no-repeat center, #FBFBFB;
-    background-size: cover;
+    background: #FBFBFB;
     border: 1px solid #000000;
     box-shadow: 0.28vw -0.42vh 0.47vw rgba(0, 0, 0, 0.25);
     border-radius: 6.33vh;
+    overflow: hidden;
 }
 
-.side-card-left h3 {
+.side-card-left video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+.side-card-left .card-title {
     font-family: 'Lexend', sans-serif;
     font-weight: 500;
     font-size: 1.8vw;
     text-align: left;
     color: #080808;
     margin: 0;
+    position: relative;
+    z-index: 1;
 }
 
 .side-card-right {
@@ -578,19 +588,31 @@ body {
     height: 100vh;
     right: 5vw;
     top: 58vh;
-    background: url('/images/6913652_Motion_Graphics_Motion_Graphic_1080x1920.gif') no-repeat center;
-    background-size: cover;
+    background: #FBFBFB;
     filter: drop-shadow(0.28vw -0.42vh 0.47vw rgba(0, 0, 0, 0.25));
     border-radius: 6.33vh;
+    overflow: hidden;
 }
 
-.side-card-right h3 {
+.side-card-right video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+.side-card-right .card-title {
     font-family: 'Lexend', sans-serif;
     font-weight: 500;
     font-size: 1.8vw;
     text-align: left;
     color: #000000;
     margin: 0;
+    position: relative;
+    z-index: 1;
 }
 
 .stats-container {
@@ -668,26 +690,39 @@ body {
     height: 40vh;
     left: 28vw;
     top: 112vh;
-    background: url('/images/sequence_01_3.gif') no-repeat center;
-    background-size: cover;
+    background: #1a1a1a;
     filter: drop-shadow(0.13vw -0.19vh 0.21vw rgba(0, 0, 0, 0.25));
     border-radius: 3.5vh;
     display: flex;
     align-items: center;
     padding: 2vh 2vw;
     margin-top: 2vw;
+    overflow: hidden;
 }
 
-.center-main-card h3 {
+.center-main-card .desktop-video {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+.center-main-card .mobile-video {
+    display: none;
+}
+
+.center-main-card .card-title {
     font-family: 'Lexend', sans-serif;
     font-weight: 500;
     font-size: 2vw;
     color: #FFFFFF;
     margin: 0;
-}
-
-.center-main-card video {
-    display: none !important;
+    position: relative;
+    z-index: 1;
 }
 
 .center-main-card .mobile-text {
@@ -979,6 +1014,14 @@ body {
 
     .center-main-card .desktop-text {
         display: none;
+    }
+
+    .center-main-card .desktop-video {
+        display: none !important;
+    }
+
+    .center-main-card .mobile-video {
+        display: block !important;
     }
 
     .center-main-card .mobile-text {
@@ -1829,15 +1872,21 @@ body {
     font-size: 1vw;
     color: #555;
     line-height: 1.5;
-    margin: 0 0 1vw 0; /* Add margin below description */
-    flex-grow: 1; /* Allow paragraph to grow */
+    margin: 0 0 1vw 0;
+    /* Add margin below description */
+    flex-grow: 1;
+    /* Allow paragraph to grow */
 }
 
 .card-content-bottom {
-    display: block; /* Change to block to stack elements */
-    margin-top: auto; /* Push to the bottom */
-    position: relative; /* For positioning the arrow */
-    height: 3vw; /* Give some height for the arrow */
+    display: block;
+    /* Change to block to stack elements */
+    margin-top: auto;
+    /* Push to the bottom */
+    position: relative;
+    /* For positioning the arrow */
+    height: 3vw;
+    /* Give some height for the arrow */
 }
 
 .card-arrow-icon {
@@ -1944,14 +1993,19 @@ body {
     .insight-card p {
         font-size: 3.5vw;
         line-height: 1.6;
-        margin: 0 0 3vw 0; /* Adjusted for mobile margin */
+        margin: 0 0 3vw 0;
+        /* Adjusted for mobile margin */
     }
 
     .card-content-bottom {
-        display: block; /* Change to block to stack elements */
-        margin-top: auto; /* Push to the bottom */
-        position: relative; /* For positioning the arrow */
-        height: 10vw; /* Give some height for the arrow */
+        display: block;
+        /* Change to block to stack elements */
+        margin-top: auto;
+        /* Push to the bottom */
+        position: relative;
+        /* For positioning the arrow */
+        height: 10vw;
+        /* Give some height for the arrow */
     }
 
     .card-arrow-icon {
@@ -2855,10 +2909,11 @@ body {
         padding-left: 8vw;
         line-height: 1.6;
     }
-        .footer {
+
+    .footer {
         padding: 5vh 8vw 8vw 8vw;
     }
-    
+
     .footer-content {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -2920,6 +2975,7 @@ body {
         font-size: 3.5vw;
         text-align: center;
     }
+
     .mobile-hero-icons {
         display: block;
     }
@@ -2973,7 +3029,8 @@ body {
 }
 
 .insights-cards-container::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, and Opera */
+    display: none;
+    /* Chrome, Safari, and Opera */
 }
 
 @media (min-width: 769px) {

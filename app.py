@@ -69,6 +69,17 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Cache headers middleware for static assets
+@app.middleware("http")
+async def add_cache_headers(request: Request, call_next):
+    response = await call_next(request)
+    path = request.url.path
+    # Add long cache headers for static assets
+    if any(path.startswith(p) for p in ['/css/', '/js/', '/images/', '/icons/', '/fonts/']):
+        response.headers["Cache-Control"] = "public, max-age=31536000, immutable"
+    return response
+
+
 app.mount("/css", StaticFiles(directory="PAGE_SERVING_ROUTERS/CSS"), name="css")
 app.mount("/icons", StaticFiles(directory="PAGE_SERVING_ROUTERS/ICONS"), name="icons")
 app.mount("/images", StaticFiles(directory="PAGE_SERVING_ROUTERS/IMAGES"), name="images")
