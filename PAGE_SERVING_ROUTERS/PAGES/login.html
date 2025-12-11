@@ -1,13 +1,18 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Login • Suflex Media | Access Admin Dashboard</title>
+  <!-- Block search engine indexing for admin login -->
+  <meta name="robots" content="noindex, nofollow">
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap"
+    rel="stylesheet">
   <!-- Conditional CSS loading based on viewport width -->
   <link rel="stylesheet" href="/css/login/login-mobile.css" media="(max-width: 767px)" />
   <link rel="stylesheet" href="/css/login/login-tablet.css" media="(min-width: 768px) and (max-width: 1029px)" />
@@ -21,12 +26,11 @@
       <div id="screen-login">
         <form id="loginForm">
           <div class="field">
-            <input id="email" name="email" type="email" autocomplete="email"
-              placeholder="Email Address" required />
+            <input id="email" name="email" type="email" autocomplete="email" placeholder="Email Address" required />
           </div>
           <div class="field">
-            <input id="password" name="password" type="password" autocomplete="current-password"
-              placeholder="Password" required />
+            <input id="password" name="password" type="password" autocomplete="current-password" placeholder="Password"
+              required />
           </div>
           <button class="primary" id="loginBtn" type="submit">
             Login
@@ -38,14 +42,41 @@
   <div class="toast" id="toast" aria-live="polite"></div>
   <script>
     const originalTitle = "Login • Suflex Media | Access Admin Dashboard";
-    const awayTitle = "😢 Missing you already!";
-    
-    document.addEventListener("visibilitychange", function() {
-        if (document.hidden) {
-            document.title = awayTitle;
-        } else {
-            document.title = originalTitle;
-        }
+    const awayTitle = "Missing you already!";
+    const originalFavicon = "/images/logo_header.png";
+
+    function createEmojiFavicon(emoji) {
+      const canvas = document.createElement('canvas');
+      canvas.width = 32;
+      canvas.height = 32;
+      const ctx = canvas.getContext('2d');
+      ctx.font = '28px serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(emoji, 16, 18);
+      return canvas.toDataURL('image/png');
+    }
+
+    const awayFavicon = createEmojiFavicon('😢');
+
+    function setFavicon(href) {
+      let link = document.querySelector("link[rel*='icon']");
+      if (!link) {
+        link = document.createElement('link');
+        link.rel = 'icon';
+        document.head.appendChild(link);
+      }
+      link.href = href;
+    }
+
+    document.addEventListener("visibilitychange", function () {
+      if (document.hidden) {
+        document.title = awayTitle;
+        setFavicon(awayFavicon);
+      } else {
+        document.title = originalTitle;
+        setFavicon(originalFavicon);
+      }
     });
   </script>
   <script src="/js/login.js"></script>

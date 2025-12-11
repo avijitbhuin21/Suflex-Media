@@ -1,0 +1,25 @@
+# robots.txt for Suflex Media
+# https://suflexmedia.com
+
+User-agent: *
+Allow: /
+
+# Block admin pages
+Disallow: /admin/
+Disallow: /admin-homepage
+Disallow: /admin-users
+Disallow: /admin-blogs
+Disallow: /admin-case-studies
+Disallow: /admin-pdf-downloads
+
+# Block API endpoints
+Disallow: /api/
+
+# Block login page
+Disallow: /login
+
+# Block landing page (campaign-specific)
+Disallow: /ghostwriting-landing
+
+# Sitemap location
+Sitemap: https://suflexmedia.com/sitemap.xml

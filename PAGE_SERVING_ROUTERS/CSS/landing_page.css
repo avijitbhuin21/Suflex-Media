@@ -375,15 +375,21 @@ body {
         height: 3px !important;
     }
 
+    .hero-section {
+        margin-top: 0 !important;
+        padding: 3vh 4vw !important;
+    }
+
     .hero-title {
-        font-size: 7vw !important;
+        font-size: 6vw !important;
         margin-bottom: 2vh;
     }
 
     .hero-subtitle {
-        font-size: 3.5vw !important;
+        font-size: 2.6vw !important;
         max-width: 80vw;
-        margin-bottom: 3vh;
+        margin-bottom: 0vh;
+        margin-top: 0vh;
     }
 
     .call-to-action-button {
@@ -393,6 +399,11 @@ body {
         margin-bottom: 2vh;
     }
 
+    .hero-svg-illustration {
+        width: 90vw !important;
+        top: 0 !important;
+    }
+
     .main-illustration {
         width: 100vw !important;
         top: 2vh;
@@ -400,6 +411,10 @@ body {
 
     .illustration-background {
         top: 40%;
+    }
+
+    .unique-container {
+        margin-top: 2vh !important;
     }
 
 }
@@ -413,6 +428,7 @@ body {
     padding: 5vh 1vw;
     background-color: #FFFFFF;
     overflow: hidden;
+    margin-top: -10vh;
 }
 
 .hero-title {
@@ -435,7 +451,7 @@ body {
     text-align: center;
     letter-spacing: -0.04em;
     color: #000000;
-    max-width: 100vw;
+    max-width: 60vw;
     margin-bottom: 4vh;
     margin-top: 4vh;
 }
@@ -470,6 +486,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: -85vh;
 }
 
 .illustration-background {
@@ -479,76 +496,26 @@ body {
     left: 50%;
     top: 31%;
     transform: translateX(-50%);
-    background: #D1E7FF;
+    background: transparent;
     border-radius: 100%;
     z-index: 0;
 }
 
-.main-illustration {
-    position: inherit;
+.hero-svg-illustration {
+    position: relative;
     z-index: 1;
-    width: 68vw;
+    width: 75vw;
+    max-width: 1100px;
     height: auto;
     top: 5vh;
-}
-
-.doodle {
-    position: absolute;
-    z-index: 2;
-    width: 5%;
-}
-
-.doodle-star {
-    top: -12vh;
-    left: -12vw;
-}
-
-
-.doodle-arrow-right {
-    top: 7vh;
-    left: 0vw;
-    width: 7vw;
-    transform: rotate(-30deg);
-}
-
-.doodle-arrow-left {
-    top: -10vh;
-    right: -13vw;
-    width: 5vw;
-    transform: rotate(60deg);
-}
-.doodle-chat {
-    top: 32vh;
-    left: 11vw;
-    width: 10vw;
-}
-
-.doodle-crown {
-    top: 16vh;
-    right: 20vw;
-    width: 10vw;
-    transform: rotate(19deg);
-}
-
-.doodle-lightning {
-    bottom: 23vh;
-    right: 15vw;
-    width: 6vw;
-    transform: rotate(8deg);
-}
-
-.doodle-spring {
-    bottom: 35vh;
-    right: 0vw;
-    width: 9vw;
-    transform: rotate(45deg);
+    pointer-events: none;
 }
 
 .footer {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 25vh 5vh 5vw 5vw;
+    padding: 0vh 5vh 5vw 5vw;
     background: linear-gradient(180deg, rgba(217, 217, 217, 0) 0%, rgba(1, 122, 255, 0.25) 100%);
     font-family: 'Lexend', sans-serif;
     gap: 5vh;
@@ -644,8 +611,26 @@ body {
 }
 
 @media (max-width: 768px) {
+    .hero-section {
+        margin-top: 0 !important;
+        padding: 4vh 4vw !important;
+    }
+
+    .hero-illustration-area {
+        margin-top: -20vh !important;
+    }
+
+    .hero-svg-illustration {
+        width: 85vw !important;
+        top: 0 !important;
+    }
+
+    .unique-container {
+        margin-top: 3vh !important;
+    }
+
     .footer {
-        padding: 15vh 8vw 8vw 8vw;
+        padding: 0vh 8vw 8vw 8vw;
     }
     .main-illustration {
         width: 100vw !important;
@@ -722,7 +707,7 @@ body {
 }
 }
 .unique-container {
-    padding: 8vh 4vw;
+    margin-top: -5vh;
     font-family: 'Lexend', sans-serif;
 }
 
@@ -825,6 +810,7 @@ body {
     .unique-services {
         max-width: 100%;
         padding: 4vh 6vw;
+        margin-top: -8vh;
     }
 
     .unique-services-title {
@@ -975,7 +961,6 @@ body {
 
 @media (min-width: 768px) {
     .industry-star-section {
-        margin: 10vh 0;
         border-radius: 0;
         box-shadow: none;
         max-width: 100%;
@@ -1031,10 +1016,12 @@ body {
 
 @media (min-width: 1024px) {
     .industry-star-container {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(2, 1fr);
+        gap: 3vw;
+        max-width: 60vw;
     }
     .industry-star-card {
-        padding: 3vh 1.5vw;
+        padding: 4vh 2.5vw;
     }
 }
 .book-strategy-call-section {
@@ -1139,7 +1126,6 @@ body {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    padding: 10vh 5vw;
     font-family: 'Lexend', sans-serif;
     background-color: #fff;
     overflow: hidden;
@@ -1209,6 +1195,7 @@ body {
 @media (max-width: 768px) {
     .schedule-section {
         padding: 8vh 8vw;
+        padding-bottom: 0vh;
     }
 
     .schedule-decoration .line {

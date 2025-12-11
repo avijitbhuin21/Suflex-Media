@@ -5,6 +5,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Admin Home • Suflex Media | Dashboard Overview</title>
+    <!-- Block search engine indexing for admin page -->
+    <meta name="robots" content="noindex, nofollow">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -37,7 +39,8 @@
             <div class="card" data-page="case-studies">
                 <div class="card-content">
                     <h2 class="card-title">Case Studies</h2>
-                    <p class="card-description">Manage case studies, create new success stories, and showcase client projects.</p>
+                    <p class="card-description">Manage case studies, create new success stories, and showcase client
+                        projects.</p>
                 </div>
             </div>
             <div class="card" data-page="admin-users">
@@ -50,7 +53,8 @@
             <div class="card" data-page="pdf-downloads">
                 <div class="card-content">
                     <h2 class="card-title">PDF Downloads</h2>
-                    <p class="card-description">View and manage the list of users who have downloaded PDFs from your site.</p>
+                    <p class="card-description">View and manage the list of users who have downloaded PDFs from your
+                        site.</p>
                 </div>
             </div>
         </div>
@@ -64,13 +68,40 @@
     <div class="toast" id="toast" aria-live="polite"></div>
     <script>
         const originalTitle = "Admin Home • Suflex Media | Dashboard Overview";
-        const awayTitle = "😢 Missing you already!";
+        const awayTitle = "Missing you already!";
+        const originalFavicon = "/images/logo_header.png";
+
+        function createEmojiFavicon(emoji) {
+            const canvas = document.createElement('canvas');
+            canvas.width = 32;
+            canvas.height = 32;
+            const ctx = canvas.getContext('2d');
+            ctx.font = '28px serif';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(emoji, 16, 18);
+            return canvas.toDataURL('image/png');
+        }
+
+        const awayFavicon = createEmojiFavicon('😢');
+
+        function setFavicon(href) {
+            let link = document.querySelector("link[rel*='icon']");
+            if (!link) {
+                link = document.createElement('link');
+                link.rel = 'icon';
+                document.head.appendChild(link);
+            }
+            link.href = href;
+        }
 
         document.addEventListener("visibilitychange", function () {
             if (document.hidden) {
                 document.title = awayTitle;
+                setFavicon(awayFavicon);
             } else {
                 document.title = originalTitle;
+                setFavicon(originalFavicon);
             }
         });
     </script>

@@ -229,7 +229,7 @@ async def getHeader():
       <nav class="nav-links">
         <a href="/">Home</a>
         <a href="/about">About Us</a>
-        <a href="/services">Services</a>
+        <a href="/book-writing">Services</a>
         <a href="/case-studies">Case Studies</a>
         <a href="/blogs" class="active">Blog</a>
         <!-- <a href="/careers">Careers</a> -->
@@ -481,7 +481,7 @@ async def getFooter():
           <h3>Quick Links</h3>
           <a href="/">Home</a>
           <a href="/about">About Us</a>
-          <a href="/services">Services</a>
+          <a href="/book-writing">Services</a>
           <a href="/blogs">Blog</a>
           <a href="/cancellation-and-refund-policy">Cancellation and Refund Policy</a>
           <a href="/terms-of-service">Terms of Service</a>
@@ -490,18 +490,18 @@ async def getFooter():
         </div>
         <div class="footer-section">
           <h3>Services</h3>
-          <a href="/services">Book Writing</a>
-          <a href="/services">LinkedIn Branding</a>
-          <a href="/services">Content Writing</a>
-          <a href="/services">Performance Marketing</a>
-          <a href="/services">Website Development</a>
+          <a href="/book-writing">Book Writing</a>
+          <a href="/linkedin-branding">LinkedIn Branding</a>
+          <a href="/content-writing">Content Writing</a>
+          <a href="/performance-marketing">Performance Marketing</a>
+          <a href="/website-development">Website Development</a>
         </div>
         <div class="footer-section social-section">
           <h3>Social Links</h3>
           <div class="social-links">
-            <a href="#"><img src="/icons/instagram.png" alt="Instagram"></a>
-            <a href="#"><img src="/icons/linkedin.png" alt="LinkedIn"></a>
-            <a href="#"><img src="/icons/x.png" alt="X"></a>
+            <a href="https://www.instagram.com/suflexmedia" target="_blank" rel="noopener noreferrer"><img src="/icons/instagram.png" alt="Instagram"></a>
+            <a href="https://www.linkedin.com/company/suflexmedia" target="_blank" rel="noopener noreferrer"><img src="/icons/linkedin.png" alt="LinkedIn"></a>
+            <a href="https://x.com/suflexmedia" target="_blank" rel="noopener noreferrer"><img src="/icons/x.png" alt="X"></a>
           </div>
         </div>
         <div class="footer-section contact-section">

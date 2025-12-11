@@ -3,8 +3,11 @@
 
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="/images/logo_header.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Blogs • Suflex Media | Manage Blog Content</title>
+    <!-- Block search engine indexing for admin page -->
+    <meta name="robots" content="noindex, nofollow">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,9 +21,11 @@
             color: rgba(255, 255, 255, 0.4);
             pointer-events: none;
         }
+
         .content-editable:focus {
             outline: none;
         }
+
         .content-editable {
             white-space: pre-wrap;
             word-wrap: break-word;
@@ -29,12 +34,12 @@
             position: relative;
             z-index: 1;
         }
-        
+
         .content-editable * {
             background-color: transparent !important;
             background: transparent !important;
         }
-        
+
         .content-editable p,
         .content-editable div,
         .content-editable h1,
@@ -48,8 +53,10 @@
             padding-top: 0 !important;
             padding-bottom: 0 !important;
         }
-        
-        .bullet-item, .project-snapshot-item, .bullet-point-item {
+
+        .bullet-item,
+        .project-snapshot-item,
+        .bullet-point-item {
             position: relative;
             z-index: 1;
             margin-bottom: 1rem;
@@ -62,26 +69,27 @@
     <nav class="fixed top-0 left-0 right-0 z-50">
         <div class="flex items-center justify-between px-6 py-4">
             <div class="flex items-center gap-4">
-                <button onclick="window.history.back()" class="back-button p-2 rounded-full hover:bg-white/5 transition-colors" title="Go Back">
+                <button onclick="window.history.back()"
+                    class="back-button p-2 rounded-full hover:bg-white/5 transition-colors" title="Go Back">
                     <i data-lucide="arrow-left" class="w-5 h-5 text-white"></i>
                 </button>
                 <h1 class="logo-text text-2xl font-bold text-white">Sufflex Media</h1>
             </div>
-            
+
             <div class="navbar-wrapper"
                 style="backdrop-filter: blur(35px); -webkit-backdrop-filter: blur(35px); background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 70px; padding: 12px 20px;">
                 <div id="navbarTabs" class="expandable-tabs flex items-center gap-4 anim-hidden-initial"
                     style="animation: slideDown 0.8s cubic-bezier(0.25, 0.4, 0.25, 1) 0.3s forwards;">
                 </div>
             </div>
-            
+
             <button onclick="handleLogout()" class="logout-button">
                 <i data-lucide="log-out" class="w-4 h-4 text-black"></i>
                 <span>Logout</span>
             </button>
         </div>
     </nav>
-    
+
     <div class="loading-overlay" id="loadingOverlay">
         <div class="loading-content">
             <span class="spinner"></span>
@@ -95,32 +103,32 @@
     <main class="pt-20 px-4">
         <div class="main-grid-container">
             <div class="left-section" id="leftSection">
-                    <div class="left-section-header-new" id="galleryHeader">
-                        <div class="header-left">
-                            <h2 class="section-header-title">Files</h2>
-                        </div>
-                        <div class="header-center">
-                            <div class="expandable-tabs flex items-center gap-2">
-                                <button class="left-tab-button active" data-left-tab="upload-image">
-                                    <div class="flex-shrink-0">
-                                        <i data-lucide="image" class="w-4 h-4"></i>
-                                    </div>
-                                    <span>Upload Image</span>
-                                </button>
-                                <button class="left-tab-button" data-left-tab="storage">
-                                    <div class="flex-shrink-0">
-                                        <i data-lucide="image" class="w-4 h-4"></i>
-                                    </div>
-                                    <span>Gallery</span>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="header-right">
-                            <button id="toggleGalleryBtn" class="gallery-toggle-btn" title="Toggle Gallery">
-                                <i data-lucide="chevron-left" class="w-5 h-5"></i>
+                <div class="left-section-header-new" id="galleryHeader">
+                    <div class="header-left">
+                        <h2 class="section-header-title">Files</h2>
+                    </div>
+                    <div class="header-center">
+                        <div class="expandable-tabs flex items-center gap-2">
+                            <button class="left-tab-button active" data-left-tab="upload-image">
+                                <div class="flex-shrink-0">
+                                    <i data-lucide="image" class="w-4 h-4"></i>
+                                </div>
+                                <span>Upload Image</span>
+                            </button>
+                            <button class="left-tab-button" data-left-tab="storage">
+                                <div class="flex-shrink-0">
+                                    <i data-lucide="image" class="w-4 h-4"></i>
+                                </div>
+                                <span>Gallery</span>
                             </button>
                         </div>
                     </div>
+                    <div class="header-right">
+                        <button id="toggleGalleryBtn" class="gallery-toggle-btn" title="Toggle Gallery">
+                            <i data-lucide="chevron-left" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+                </div>
 
                 <div id="upload-imageContent" class="left-content-section active">
                     <h3 class="text-lg font-semibold mb-4 text-white" style="font-family: 'Playfair Display', serif;">
@@ -175,17 +183,17 @@
                                     id="magazinesSearchInput"
                                     style="background-color: transparent; border: none; color: white;">
                             </div>
-                            </div>
-                        </div>
-                        <div id="magazinesGrid" class="grid grid-cols-4 gap-4">
-                        </div>
-
-                        <div id="noMagazineItems" class="text-center py-8 hidden">
-                            <i data-lucide="folder-x" class="w-12 h-12 mx-auto text-white/20 mb-4"></i>
-                            <h4 class="text-lg font-medium text-white/80">No Magazines Found</h4>
-                            <p class="text-white/50 mt-2">Try uploading some magazines or changing your search.</p>
                         </div>
                     </div>
+                    <div id="magazinesGrid" class="grid grid-cols-4 gap-4">
+                    </div>
+
+                    <div id="noMagazineItems" class="text-center py-8 hidden">
+                        <i data-lucide="folder-x" class="w-12 h-12 mx-auto text-white/20 mb-4"></i>
+                        <h4 class="text-lg font-medium text-white/80">No Magazines Found</h4>
+                        <p class="text-white/50 mt-2">Try uploading some magazines or changing your search.</p>
+                    </div>
+                </div>
 
             </div>
 
@@ -367,7 +375,7 @@
                                                     title="Add H5 Header">
                                                     <i data-lucide="heading-5" class="w-4 h-4"></i>
                                                 </button>
-                                                    
+
                                             </div>
                                         </div>
 
@@ -504,22 +512,26 @@
                             </div>
 
                             <div class="mb-6 flex items-center gap-2 flex-wrap">
-                                <button id="filterEditorsChoiceBtn" class="form-button filter-btn bg-white/10 hover:bg-white/15 border border-white/20 text-white text-sm px-4 py-2">
+                                <button id="filterEditorsChoiceBtn"
+                                    class="form-button filter-btn bg-white/10 hover:bg-white/15 border border-white/20 text-white text-sm px-4 py-2">
                                     <i data-lucide="star" class="w-4 h-4 inline mr-2"></i>
                                     <span>Editor's Choice</span>
                                 </button>
                                 <span id="editorsChoiceCount" class="text-xs text-white/60"></span>
-                                <button id="filterBlogHeroBtn" class="form-button filter-btn bg-white/10 hover:bg-white/15 border border-white/20 text-white text-sm px-4 py-2">
+                                <button id="filterBlogHeroBtn"
+                                    class="form-button filter-btn bg-white/10 hover:bg-white/15 border border-white/20 text-white text-sm px-4 py-2">
                                     <i data-lucide="crown" class="w-4 h-4 inline mr-2"></i>
                                     <span>Blog Hero</span>
                                 </button>
                                 <span id="blogHeroCount" class="text-xs text-white/60"></span>
-                                <button id="filterBlogHomePageBtn" class="form-button filter-btn bg-white/10 hover:bg-white/15 border border-white/20 text-white text-sm px-4 py-2">
+                                <button id="filterBlogHomePageBtn"
+                                    class="form-button filter-btn bg-white/10 hover:bg-white/15 border border-white/20 text-white text-sm px-4 py-2">
                                     <i data-lucide="home" class="w-4 h-4 inline mr-2"></i>
                                     <span>Blog Home Page</span>
                                 </button>
                                 <span id="blogHomePageCount" class="text-xs text-white/60"></span>
-                                <button id="filterAllBtn" class="form-button filter-btn bg-white/10 hover:bg-white/15 border border-white/20 text-white text-sm px-4 py-2">
+                                <button id="filterAllBtn"
+                                    class="form-button filter-btn bg-white/10 hover:bg-white/15 border border-white/20 text-white text-sm px-4 py-2">
                                     <i data-lucide="list" class="w-4 h-4 inline mr-2"></i>
                                     <span>All Blogs</span>
                                 </button>
@@ -697,11 +709,14 @@
                         <div class="flex items-start gap-3">
                             <i data-lucide="alert-triangle" class="w-5 h-5 text-red-400 mt-0.5 flex-shrink-0"></i>
                             <div>
-                                <h4 class="text-red-400 font-medium mb-1">⚠️ Warning: This action is permanent and cannot be undone!</h4>
-                                <p class="text-white/80 text-sm">You are about to permanently delete the following blog from the database:
+                                <h4 class="text-red-400 font-medium mb-1">⚠️ Warning: This action is permanent and
+                                    cannot be undone!</h4>
+                                <p class="text-white/80 text-sm">You are about to permanently delete the following blog
+                                    from the database:
                                 </p>
                                 <p id="deleteBlogTitle" class="text-white font-medium mt-2 break-words"></p>
-                                <p class="text-red-400 text-xs mt-2 font-medium">⚠️ The blog will be permanently removed from the database and cannot be recovered!</p>
+                                <p class="text-red-400 text-xs mt-2 font-medium">⚠️ The blog will be permanently removed
+                                    from the database and cannot be recovered!</p>
                             </div>
                         </div>
                     </div>
@@ -711,7 +726,9 @@
                             <input type="checkbox" id="confirmDeleteCheckbox"
                                 class="mt-1 w-4 h-4 text-red-600 bg-gray-100 border-gray-300 rounded focus:ring-red-500">
                             <span class="text-sm text-white/80">
-                                I understand that this action will <strong class="text-red-400">permanently delete</strong> this blog from the database and <strong class="text-red-400">cannot be undone</strong>.
+                                I understand that this action will <strong class="text-red-400">permanently
+                                    delete</strong> this blog from the database and <strong class="text-red-400">cannot
+                                    be undone</strong>.
                             </span>
                         </label>
                     </div>
@@ -796,13 +813,40 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.9.359/pdf.min.js"></script>
     <script>
         const originalTitle = "Admin Blogs • Suflex Media | Manage Blog Content";
-        const awayTitle = "😢 Missing you already!";
-        
-        document.addEventListener("visibilitychange", function() {
+        const awayTitle = "Missing you already!";
+        const originalFavicon = "/images/logo_header.png";
+
+        function createEmojiFavicon(emoji) {
+            const canvas = document.createElement('canvas');
+            canvas.width = 32;
+            canvas.height = 32;
+            const ctx = canvas.getContext('2d');
+            ctx.font = '28px serif';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(emoji, 16, 18);
+            return canvas.toDataURL('image/png');
+        }
+
+        const awayFavicon = createEmojiFavicon('😢');
+
+        function setFavicon(href) {
+            let link = document.querySelector("link[rel*='icon']");
+            if (!link) {
+                link = document.createElement('link');
+                link.rel = 'icon';
+                document.head.appendChild(link);
+            }
+            link.href = href;
+        }
+
+        document.addEventListener("visibilitychange", function () {
             if (document.hidden) {
                 document.title = awayTitle;
+                setFavicon(awayFavicon);
             } else {
                 document.title = originalTitle;
+                setFavicon(originalFavicon);
             }
         });
     </script>

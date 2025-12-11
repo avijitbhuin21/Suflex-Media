@@ -1,12 +1,17 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Admin Users Management • Suflex Media | Manage User Accounts</title>
+  <!-- Block search engine indexing for admin page -->
+  <meta name="robots" content="noindex, nofollow">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="/css/admin/admin-users-mobile.css" media="(max-width: 767px)" />
   <link rel="stylesheet" href="/css/admin/admin-users-tablet.css" media="(min-width: 768px) and (max-width: 1029px)" />
   <link rel="stylesheet" href="/css/admin/admin-users-desktop.css" media="(min-width: 1030px)" />
@@ -115,14 +120,41 @@
 
   <script>
     const originalTitle = "Admin Users Management • Suflex Media | Manage User Accounts";
-    const awayTitle = "😢 Missing you already!";
-    
-    document.addEventListener("visibilitychange", function() {
-        if (document.hidden) {
-            document.title = awayTitle;
-        } else {
-            document.title = originalTitle;
-        }
+    const awayTitle = "Missing you already!";
+    const originalFavicon = "/images/logo_header.png";
+
+    function createEmojiFavicon(emoji) {
+      const canvas = document.createElement('canvas');
+      canvas.width = 32;
+      canvas.height = 32;
+      const ctx = canvas.getContext('2d');
+      ctx.font = '28px serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(emoji, 16, 18);
+      return canvas.toDataURL('image/png');
+    }
+
+    const awayFavicon = createEmojiFavicon('😢');
+
+    function setFavicon(href) {
+      let link = document.querySelector("link[rel*='icon']");
+      if (!link) {
+        link = document.createElement('link');
+        link.rel = 'icon';
+        document.head.appendChild(link);
+      }
+      link.href = href;
+    }
+
+    document.addEventListener("visibilitychange", function () {
+      if (document.hidden) {
+        document.title = awayTitle;
+        setFavicon(awayFavicon);
+      } else {
+        document.title = originalTitle;
+        setFavicon(originalFavicon);
+      }
     });
   </script>
   <script type="module" src="/js/admin_users.js"></script>

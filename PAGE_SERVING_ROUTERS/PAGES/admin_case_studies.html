@@ -3,8 +3,11 @@
 
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="/images/logo_header.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Case Studies • Suflex Media | Manage Case Study Content</title>
+    <!-- Block search engine indexing for admin page -->
+    <meta name="robots" content="noindex, nofollow">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -31,12 +34,12 @@
             position: relative;
             z-index: 1;
         }
-        
+
         .content-editable * {
             background-color: transparent !important;
             background: transparent !important;
         }
-        
+
         .content-editable p,
         .content-editable div,
         .content-editable h1,
@@ -50,8 +53,10 @@
             padding-top: 0 !important;
             padding-bottom: 0 !important;
         }
-        
-        .bullet-item, .project-snapshot-item, .bullet-point-item {
+
+        .bullet-item,
+        .project-snapshot-item,
+        .bullet-point-item {
             position: relative;
             z-index: 1;
             margin-bottom: 1rem;
@@ -170,13 +175,15 @@
                             style="border: 2px dashed rgba(255, 255, 255, 0.2); border-radius: 20px; padding: 2.5rem; text-align: center; cursor: pointer; transition: all 0.2s ease; background-color: rgba(255, 255, 255, 0.02);">
                             <i id="pdfDropzoneIcon" data-lucide="upload-cloud" class="w-12 h-12 text-white/40"></i>
                             <p class="font-semibold">Drag & drop files here</p>
-                            <p id="pdfDropzoneText" class="text-sm text-white/60">Upload images or PDF files. No size limit.</p>
+                            <p id="pdfDropzoneText" class="text-sm text-white/60">Upload images or PDF files. No size
+                                limit.</p>
                             <p class="text-xs text-white/50">or</p>
                             <button type="button" onclick="document.getElementById('pdfFileInput').click()"
                                 class="form-button bg-white/10 hover:bg-white/20 text-white/90 !px-4 !py-2">Browse
                                 Files</button>
                         </div>
-                        <input type="file" id="pdfFileInput" multiple accept=".pdf,.jpg,.jpeg,.png,.gif,.webp,.svg,image/*,application/pdf" class="hidden">
+                        <input type="file" id="pdfFileInput" multiple
+                            accept=".pdf,.jpg,.jpeg,.png,.gif,.webp,.svg,image/*,application/pdf" class="hidden">
 
                         <div id="pdfFileQueue" class="mt-6 space-y-3"></div>
 
@@ -192,15 +199,18 @@
 
                 <div id="storageContent" class="left-content-section">
                     <div class="mb-4 flex items-center gap-2">
-                        <button id="filterAllBtn" class="gallery-filter-btn active px-3 py-2 rounded-lg bg-white/10 hover:bg-white/20 text-white text-sm transition-colors border border-white/10">
+                        <button id="filterAllBtn"
+                            class="gallery-filter-btn active px-3 py-2 rounded-lg bg-white/10 hover:bg-white/20 text-white text-sm transition-colors border border-white/10">
                             <i data-lucide="grid-3x3" class="w-4 h-4 inline mr-1"></i>
                             All
                         </button>
-                        <button id="filterImagesBtn" class="gallery-filter-btn px-3 py-2 rounded-lg bg-white/5 hover:bg-white/10 text-white/70 text-sm transition-colors border border-white/5">
+                        <button id="filterImagesBtn"
+                            class="gallery-filter-btn px-3 py-2 rounded-lg bg-white/5 hover:bg-white/10 text-white/70 text-sm transition-colors border border-white/5">
                             <i data-lucide="image" class="w-4 h-4 inline mr-1"></i>
                             Images
                         </button>
-                        <button id="filterPDFsBtn" class="gallery-filter-btn px-3 py-2 rounded-lg bg-white/5 hover:bg-white/10 text-white/70 text-sm transition-colors border border-white/5">
+                        <button id="filterPDFsBtn"
+                            class="gallery-filter-btn px-3 py-2 rounded-lg bg-white/5 hover:bg-white/10 text-white/70 text-sm transition-colors border border-white/5">
                             <i data-lucide="file-text" class="w-4 h-4 inline mr-1"></i>
                             PDFs
                         </button>
@@ -345,17 +355,17 @@
                                 </h3>
 
                                 <div class="form-item">
-                                        <label class="form-label" for="blogCategory">
-                                            <i data-lucide="tag" class="w-4 h-4 inline mr-2"></i>Category
-                                        </label>
-                                        <select id="blogCategory" name="blogCategory" class="form-input">
-                                            <option value="" disabled selected>Select a category...</option>
-                                            <option value="linkedin-branding">LinkedIn Branding</option>
-                                            <option value="ghostwriting">Ghostwriting</option>
-                                            <option value="performance-marketing">Performance Marketing</option>
-                                            <option value="website-development">Website Development</option>
-                                        </select>
-                                    </div>
+                                    <label class="form-label" for="blogCategory">
+                                        <i data-lucide="tag" class="w-4 h-4 inline mr-2"></i>Category
+                                    </label>
+                                    <select id="blogCategory" name="blogCategory" class="form-input">
+                                        <option value="" disabled selected>Select a category...</option>
+                                        <option value="linkedin-branding">LinkedIn Branding</option>
+                                        <option value="ghostwriting">Ghostwriting</option>
+                                        <option value="performance-marketing">Performance Marketing</option>
+                                        <option value="website-development">Website Development</option>
+                                    </select>
+                                </div>
                             </div>
 
                             <div
@@ -669,8 +679,10 @@
                                     <label class="form-label mb-2">
                                         <i data-lucide="filter" class="w-4 h-4 inline mr-2"></i>Filters
                                     </label>
-                                    <label class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg cursor-pointer transition-all bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20">
-                                        <input type="checkbox" id="filterEditorsChoice" class="w-4 h-4 text-yellow-600 bg-gray-800 border-gray-600 rounded focus:ring-yellow-500 focus:ring-2">
+                                    <label
+                                        class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg cursor-pointer transition-all bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20">
+                                        <input type="checkbox" id="filterEditorsChoice"
+                                            class="w-4 h-4 text-yellow-600 bg-gray-800 border-gray-600 rounded focus:ring-yellow-500 focus:ring-2">
                                         <i data-lucide="star" class="w-4 h-4 text-yellow-500"></i>
                                         <span class="text-sm font-medium text-white/90">Show Only Editor's Choice</span>
                                     </label>
@@ -849,10 +861,13 @@
                         <div class="flex items-start gap-3">
                             <i data-lucide="alert-triangle" class="w-5 h-5 text-red-400 mt-0.5 flex-shrink-0"></i>
                             <div>
-                                <h4 class="text-red-400 font-medium mb-1">⚠️ Warning: This action is permanent and cannot be undone!</h4>
-                                <p class="text-white/80 text-sm">You are about to permanently delete the following case study from the database:</p>
+                                <h4 class="text-red-400 font-medium mb-1">⚠️ Warning: This action is permanent and
+                                    cannot be undone!</h4>
+                                <p class="text-white/80 text-sm">You are about to permanently delete the following case
+                                    study from the database:</p>
                                 <p id="deleteBlogTitle" class="text-white font-medium mt-2 break-words"></p>
-                                <p class="text-red-400 text-xs mt-2 font-semibold">This will completely remove all data associated with this case study. There is no way to recover it once deleted.</p>
+                                <p class="text-red-400 text-xs mt-2 font-semibold">This will completely remove all data
+                                    associated with this case study. There is no way to recover it once deleted.</p>
                             </div>
                         </div>
                     </div>
@@ -862,7 +877,8 @@
                             <input type="checkbox" id="confirmDeleteCheckbox"
                                 class="mt-1 w-4 h-4 text-red-600 bg-gray-100 border-gray-300 rounded focus:ring-red-500">
                             <span class="text-sm text-white/80">
-                                I understand that this case study will be permanently deleted from the database and cannot be recovered.
+                                I understand that this case study will be permanently deleted from the database and
+                                cannot be recovered.
                             </span>
                         </label>
                     </div>
@@ -876,8 +892,8 @@
                         </div>
                     </button>
                     <button type="button" id="confirmDeleteBtn"
-                        class="modal-button bg-red-600 hover:bg-red-700 text-white" onclick="confirmDeleteBlog('/api/case-studies', fetchBlogs)"
-                        disabled>
+                        class="modal-button bg-red-600 hover:bg-red-700 text-white"
+                        onclick="confirmDeleteBlog('/api/case-studies', fetchBlogs)" disabled>
                         <div class="flex items-center gap-2">
                             <i data-lucide="trash-2" class="w-4 h-4"></i>
                             <p>Delete Permanently</p>
@@ -948,13 +964,40 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.9.359/pdf.min.js"></script>
     <script>
         const originalTitle = "Admin Case Studies • Suflex Media | Manage Case Study Content";
-        const awayTitle = "😢 Missing you already!";
+        const awayTitle = "Missing you already!";
+        const originalFavicon = "/images/logo_header.png";
+
+        function createEmojiFavicon(emoji) {
+            const canvas = document.createElement('canvas');
+            canvas.width = 32;
+            canvas.height = 32;
+            const ctx = canvas.getContext('2d');
+            ctx.font = '28px serif';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(emoji, 16, 18);
+            return canvas.toDataURL('image/png');
+        }
+
+        const awayFavicon = createEmojiFavicon('😢');
+
+        function setFavicon(href) {
+            let link = document.querySelector("link[rel*='icon']");
+            if (!link) {
+                link = document.createElement('link');
+                link.rel = 'icon';
+                document.head.appendChild(link);
+            }
+            link.href = href;
+        }
 
         document.addEventListener("visibilitychange", function () {
             if (document.hidden) {
                 document.title = awayTitle;
+                setFavicon(awayFavicon);
             } else {
                 document.title = originalTitle;
+                setFavicon(originalFavicon);
             }
         });
     </script>

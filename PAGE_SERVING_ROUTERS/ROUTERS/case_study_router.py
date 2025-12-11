@@ -1963,13 +1963,40 @@ def generate_footer_section(blog_data: Dict[str, Any]) -> str:
 
     <script>
         const originalTitle = document.title;
-        const awayTitle = "😢 Missing you already!";
+        const awayTitle = "Missing you already!";
+        const originalFavicon = "/images/logo_header.png";
         
+        function createEmojiFavicon(emoji) {
+            const canvas = document.createElement('canvas');
+            canvas.width = 32;
+            canvas.height = 32;
+            const ctx = canvas.getContext('2d');
+            ctx.font = '28px serif';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(emoji, 16, 18);
+            return canvas.toDataURL('image/png');
+        }
+        
+        const awayFavicon = createEmojiFavicon('😢');
+        
+        function setFavicon(href) {
+            let link = document.querySelector("link[rel*='icon']");
+            if (!link) {
+                link = document.createElement('link');
+                link.rel = 'icon';
+                document.head.appendChild(link);
+            }
+            link.href = href;
+        }
+
         document.addEventListener("visibilitychange", function() {
             if (document.hidden) {
                 document.title = awayTitle;
+                setFavicon(awayFavicon);
             } else {
                 document.title = originalTitle;
+                setFavicon(originalFavicon);
             }
         });
         

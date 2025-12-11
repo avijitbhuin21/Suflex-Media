@@ -3,13 +3,58 @@
 
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="/images/logo_header.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us - Suflex Media | Book Your Free Strategy Call Today</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description"
+        content="Get in touch with Suflex Media. Book your free strategy call today for expert digital marketing, website development, content writing, and LinkedIn branding services.">
+    <link rel="canonical" href="https://suflexmedia.com/contact">
+
+    <!-- Open Graph Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Contact Us - Suflex Media | Book Your Free Strategy Call Today">
+    <meta property="og:description"
+        content="Get in touch with Suflex Media. Book your free strategy call today for expert digital marketing, website development, content writing, and LinkedIn branding services.">
+    <meta property="og:url" content="https://suflexmedia.com/contact">
+    <meta property="og:site_name" content="Suflex Media">
+    <meta property="og:image" content="https://suflexmedia.com/images/contact-us-hero.png">
+
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Contact Us - Suflex Media | Book Your Free Strategy Call Today">
+    <meta name="twitter:description"
+        content="Get in touch with Suflex Media. Book your free strategy call today for expert digital marketing, website development, content writing, and LinkedIn branding services.">
+    <meta name="twitter:image" content="https://suflexmedia.com/images/contact-us-hero.png">
+
+    <!-- Structured Data - ContactPage Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ContactPage",
+        "name": "Contact Suflex Media",
+        "description": "Get in touch with Suflex Media for digital marketing, website development, content writing, and LinkedIn branding services.",
+        "url": "https://suflexmedia.com/contact",
+        "mainEntity": {
+            "@type": "Organization",
+            "name": "Suflex Media",
+            "email": "hello@suflexmedia.com",
+            "url": "https://suflexmedia.com",
+            "logo": "https://suflexmedia.com/images/logo_header.png",
+            "sameAs": [
+                "https://www.instagram.com/suflexmedia/",
+                "https://www.linkedin.com/company/suflex-media/"
+            ]
+        }
+    }
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/contact_us.css">
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/lucide@latest" defer></script>
 </head>
 
 <body>
@@ -136,8 +181,10 @@
             <div class="footer-section social-section">
                 <h3>Social Links</h3>
                 <div class="social-links">
-                    <a href="https://www.instagram.com/suflexmedia/"><img src="/icons/instagram.png" alt="Instagram"></a>
-                    <a href="https://www.linkedin.com/company/suflex-media/"><img src="/icons/linkedin.png" alt="LinkedIn"></a>
+                    <a href="https://www.instagram.com/suflexmedia/"><img src="/icons/instagram.png"
+                            alt="Instagram"></a>
+                    <a href="https://www.linkedin.com/company/suflex-media/"><img src="/icons/linkedin.png"
+                            alt="LinkedIn"></a>
                     <a href="#"><img src="/icons/x.png" alt="X"></a>
                 </div>
             </div>
@@ -158,19 +205,46 @@
 
     <script>
         const originalTitle = "Contact Us - Suflex Media | Book Your Free Strategy Call Today";
-        const awayTitle = "😢 Missing you already!";
-        
-        document.addEventListener("visibilitychange", function() {
+        const awayTitle = "Missing you already!";
+        const originalFavicon = "/images/logo_header.png";
+
+        function createEmojiFavicon(emoji) {
+            const canvas = document.createElement('canvas');
+            canvas.width = 32;
+            canvas.height = 32;
+            const ctx = canvas.getContext('2d');
+            ctx.font = '28px serif';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(emoji, 16, 18);
+            return canvas.toDataURL('image/png');
+        }
+
+        const awayFavicon = createEmojiFavicon('😢');
+
+        function setFavicon(href) {
+            let link = document.querySelector("link[rel*='icon']");
+            if (!link) {
+                link = document.createElement('link');
+                link.rel = 'icon';
+                document.head.appendChild(link);
+            }
+            link.href = href;
+        }
+
+        document.addEventListener("visibilitychange", function () {
             if (document.hidden) {
                 document.title = awayTitle;
+                setFavicon(awayFavicon);
             } else {
                 document.title = originalTitle;
+                setFavicon(originalFavicon);
             }
         });
     </script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script type="text/javascript">
-        (function() {
+        (function () {
             emailjs.init("o9t8TF0k4wl0JeGFw");
         })();
     </script>

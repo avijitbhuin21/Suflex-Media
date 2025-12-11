@@ -3,8 +3,25 @@
 
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="/images/logo_header.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>404 - Page Not Found | Suflex Media</title>
+    <meta name="description"
+        content="The page you are looking for could not be found. Return to Suflex Media's homepage to explore our digital marketing and content creation services.">
+    <link rel="canonical" href="https://suflexmedia.com/404">
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="404 - Page Not Found | Suflex Media">
+    <meta property="og:description"
+        content="The page you are looking for could not be found. Return to Suflex Media's homepage to explore our digital marketing and content creation services.">
+    <meta property="og:url" content="https://suflexmedia.com/404">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://suflexmedia.com/images/logo_header.png">
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="404 - Page Not Found | Suflex Media">
+    <meta name="twitter:description"
+        content="The page you are looking for could not be found. Return to Suflex Media's homepage to explore our digital marketing and content creation services.">
+    <meta name="twitter:image" content="https://suflexmedia.com/images/logo_header.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="/css/404.css">
 </head>
@@ -39,13 +56,40 @@
 
     <script>
         const originalTitle = "404 - Page Not Found | Suflex Media";
-        const awayTitle = "😢 Missing you already!";
-        
-        document.addEventListener("visibilitychange", function() {
+        const awayTitle = "Missing you already!";
+        const originalFavicon = "/images/logo_header.png";
+
+        function createEmojiFavicon(emoji) {
+            const canvas = document.createElement('canvas');
+            canvas.width = 32;
+            canvas.height = 32;
+            const ctx = canvas.getContext('2d');
+            ctx.font = '28px serif';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(emoji, 16, 18);
+            return canvas.toDataURL('image/png');
+        }
+
+        const awayFavicon = createEmojiFavicon('😢');
+
+        function setFavicon(href) {
+            let link = document.querySelector("link[rel*='icon']");
+            if (!link) {
+                link = document.createElement('link');
+                link.rel = 'icon';
+                document.head.appendChild(link);
+            }
+            link.href = href;
+        }
+
+        document.addEventListener("visibilitychange", function () {
             if (document.hidden) {
                 document.title = awayTitle;
+                setFavicon(awayFavicon);
             } else {
                 document.title = originalTitle;
+                setFavicon(originalFavicon);
             }
         });
     </script>
