@@ -1372,9 +1372,15 @@ EMPTY_BLOG_TEMPLATE = r"""<!DOCTYPE html>
     <link rel="preconnect" href="https://cdn.tailwindcss.com" />
     <link rel="preconnect" href="https://unpkg.com" />
     
-    <!-- Defer render-blocking scripts -->
-    <script src="https://cdn.tailwindcss.com" defer></script>
+    <!-- Hide body until CSS is ready to prevent FOUC -->
+    <style>body { visibility: hidden; } .fouc-ready { visibility: visible !important; }</style>
+    
+    <!-- Tailwind must be render-blocking to prevent FOUC -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/@phosphor-icons/web@2.0.3" defer></script>
+    
+    <!-- Show body after Tailwind CSS is processed -->
+    <script>document.addEventListener('DOMContentLoaded', function() { document.body.classList.add('fouc-ready'); });</script>
     
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet" />
