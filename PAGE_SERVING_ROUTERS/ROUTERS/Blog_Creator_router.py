@@ -1324,7 +1324,7 @@ async def get_blog_content(data: list):
                     f"""<div class="w-full h-[120px] sm:h-[160px] md:h-[236px] my-8 md:my-12"><img src="{url}" alt="{alt}" class="w-full h-full object-cover"/></div>"""
                 )
     content_str = "\n".join(content)
-    return f"""<section class="space-y-6 md:space-y-5 text-left order-1 lg:order-2">{content_str}</section>"""
+    return f"""<section class="space-y-6 md:space-y-5 text-left order-1 lg:order-2 max-w-[59vw]">{content_str}</section>"""
 
 
 async def get_blog_body(data: dict):
@@ -1381,6 +1381,24 @@ EMPTY_BLOG_TEMPLATE = r"""<!DOCTYPE html>
     
     <!-- Show body after Tailwind CSS is processed -->
     <script>document.addEventListener('DOMContentLoaded', function() { document.body.classList.add('fouc-ready'); });</script>
+    
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '710111701297517');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=710111701297517&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
     
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet" />
