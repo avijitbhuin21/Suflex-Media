@@ -1,6 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap');
+/* Fonts are loaded in <head> section to avoid render-blocking */
 
 :root {
     --bg: transparent;
@@ -49,7 +47,8 @@ header.article-header {
     font-size: 12px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--accent);
+    color: #0056b3;
+    /* Darker blue for better contrast (was var(--accent) #017AFF) */
     background: var(--accent-2);
     padding: 8px 12px;
     border-radius: 999px;
@@ -273,7 +272,8 @@ blockquote {
 
 .nav-links a {
     text-decoration: none;
-    color: #808080;
+    color: #595959;
+    /* Darker gray for better contrast (was #808080) */
     font-size: 1.25vw;
     transition: color 0.3s ease;
 }
@@ -315,7 +315,8 @@ blockquote {
 .dropdown-toggle {
     cursor: pointer;
     text-decoration: none;
-    color: #808080;
+    color: #595959;
+    /* Darker gray for better contrast (was #808080) */
     font-size: 1.25vw;
     transition: color 0.3s ease;
     display: inline-flex;
@@ -698,7 +699,7 @@ blockquote {
     .footer {
         padding: 5vh 8vw 8vw 8vw;
     }
-    
+
     .footer-content {
         display: grid;
         grid-template-columns: 1fr 1fr;

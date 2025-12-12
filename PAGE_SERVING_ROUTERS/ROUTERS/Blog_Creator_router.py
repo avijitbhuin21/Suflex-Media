@@ -56,7 +56,7 @@ async def getHeader():
 
       .header .nav-links a {
         text-decoration: none;
-        color: #888;
+        color: #595959;
         font-size: 1.25vw;
       }
 
@@ -224,7 +224,7 @@ async def getHeader():
 
     <header class="header">
       <div class="logo">
-        <img src="/images/logo_header.png" alt="Suflex Media Logo">
+        <img src="/images/logo_header.png" alt="Suflex Media Logo" width="120" height="60">
       </div>
       <nav class="nav-links">
         <a href="/">Home</a>
@@ -499,9 +499,9 @@ async def getFooter():
         <div class="footer-section social-section">
           <h3>Social Links</h3>
           <div class="social-links">
-            <a href="https://www.instagram.com/suflexmedia" target="_blank" rel="noopener noreferrer"><img src="/icons/instagram.png" alt="Instagram"></a>
-            <a href="https://www.linkedin.com/company/suflexmedia" target="_blank" rel="noopener noreferrer"><img src="/icons/linkedin.png" alt="LinkedIn"></a>
-            <a href="https://x.com/suflexmedia" target="_blank" rel="noopener noreferrer"><img src="/icons/x.png" alt="X"></a>
+            <a href="https://www.instagram.com/suflexmedia" target="_blank" rel="noopener noreferrer"><img src="/icons/instagram.png" alt="Instagram" loading="lazy" width="58" height="58"></a>
+            <a href="https://www.linkedin.com/company/suflexmedia" target="_blank" rel="noopener noreferrer"><img src="/icons/linkedin.png" alt="LinkedIn" loading="lazy" width="58" height="58"></a>
+            <a href="https://x.com/suflexmedia" target="_blank" rel="noopener noreferrer"><img src="/icons/x.png" alt="X" loading="lazy" width="58" height="58"></a>
           </div>
         </div>
         <div class="footer-section contact-section">
@@ -511,7 +511,7 @@ async def getFooter():
       </div>
       <div class="footer-bottom">
         <div class="footer-logo">
-          <img src="/images/logo_header.png" alt="Suflex Media Logo">
+          <img src="/images/logo_header.png" alt="Suflex Media Logo" loading="lazy" width="150" height="100">
         </div>
         <div class="copyright">
           <p>Copyright © 2024 SuflexMedia | All Rights Reserved</p>
@@ -863,7 +863,7 @@ async def get_cards(other_blogs: list):
                 <div class="card bg-white rounded-xl shadow-md overflow-hidden flex flex-col flex-1 hover:shadow-lg transition-shadow duration-300">
                     <!-- Card image -->
                     <div class="h-48 overflow-hidden flex-shrink-0">
-                        <img src="{image_url}" alt="{image_alt}" class="w-full h-full object-cover">
+                        <img src="{image_url}" alt="{image_alt}" class="w-full h-full object-cover" loading="lazy" width="400" height="200">
                     </div>
                     <!-- Card content -->
                     <div class="p-6 flex flex-col flex-grow">
@@ -970,7 +970,7 @@ async def get_more_blogs_section(data: dict, other_blogs: list):
             <h2 class="text-4xl font-serif text-center mb-10 text-gray-800">Related Articles and Topics</h2>
             
             <div class="related-blogs-carousel-container">
-                <button class="related-carousel-arrow left" id="related-carousel-arrow-left">
+                <button class="related-carousel-arrow left" id="related-carousel-arrow-left" aria-label="Previous related articles">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" /></svg>
                 </button>
                 <div class="related-blogs-carousel-wrapper">
@@ -978,7 +978,7 @@ async def get_more_blogs_section(data: dict, other_blogs: list):
                         [[cards]]
                     </div>
                 </div>
-                <button class="related-carousel-arrow right" id="related-carousel-arrow-right">
+                <button class="related-carousel-arrow right" id="related-carousel-arrow-right" aria-label="Next related articles">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" /></svg>
                 </button>
             </div>
@@ -1106,8 +1106,8 @@ async def get_blog_hero_section(data: dict):
 <article class="relative mobile-hero-article max-w-[95%]">
     <div class="relative w-full h-[300px] md:h-[478px]">
         <div class="absolute inset-0 bg-cover bg-center"></div>
-        <img src="{data.get('mainImageUrl', 'https://picsum.photos/seed/default/1200/600')}" alt="{data.get('mainImageAlt', data.get('blogTitle', 'Blog Image'))}"
-            class="w-full h-full object-cover mix-blend-multiply" />
+        <img src="{data.get('mainImageUrl', 'https://picsum.photos/seed/default/1200/600')}" alt="Blog main image"
+            class="w-full h-full object-cover mix-blend-multiply" fetchpriority="high" width="1200" height="600" />
     </div>
     <div
         class="relative bg-white mobile-hero-content md:w-full w-full md:ml-[3.3rem] ml-0 max-w-[1175px] h-auto mx-auto -mt-[40px] sm:-mt-[60px] md:-mt-[76px] p-4 sm:p-6 md:p-8 z-10 ">
@@ -1159,9 +1159,9 @@ async def generate_mobile_toc(data):
                         </div>
                         <div class="flex space-x-3 ml-3">
                             <img src="/icons/whatsapp_logo.png" alt="WhatsApp"
-                                class="w-[35px] h-[35px] object-contain hover:opacity-80 transition-opacity" />
+                                class="w-[35px] h-[35px] object-contain hover:opacity-80 transition-opacity" loading="lazy" width="35" height="35" />
                             <img src="/icons/insta_logo.png" alt="Instagram"
-                                class="w-[35px] h-[35px] object-contain hover:opacity-80 transition-opacity" />
+                                class="w-[35px] h-[35px] object-contain hover:opacity-80 transition-opacity" loading="lazy" width="35" height="35" />
                         </div>
                     </div>
                 </div>
@@ -1270,9 +1270,9 @@ async def generate_desktop_toc(data):
                             </div>
                             <div class="flex space-x-3 ml-3">
                                 <img src="/icons/whatsapp_logo.png" alt="WhatsApp"
-                                    class="w-[35px] h-[35px] object-contain hover:opacity-80 transition-opacity" />
+                                    class="w-[35px] h-[35px] object-contain hover:opacity-80 transition-opacity" loading="lazy" width="35" height="35" />
                                 <img src="/icons/insta_logo.png" alt="Instagram"
-                                    class="w-[35px] h-[35px] object-contain hover:opacity-80 transition-opacity" />
+                                    class="w-[35px] h-[35px] object-contain hover:opacity-80 transition-opacity" loading="lazy" width="35" height="35" />
                             </div>
                         </div>
                     </div>
@@ -1362,10 +1362,20 @@ EMPTY_BLOG_TEMPLATE = r"""<!DOCTYPE html>
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="[[[meta_description]]]" />
     <title>[[[title]]]</title>
     <link rel="icon" type="image/png" href="static/icon/website_icon.png" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/@phosphor-icons/web@2.0.3"></script>
+    
+    <!-- Preconnect hints for faster resource loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://cdn.tailwindcss.com" />
+    <link rel="preconnect" href="https://unpkg.com" />
+    
+    <!-- Defer render-blocking scripts -->
+    <script src="https://cdn.tailwindcss.com" defer></script>
+    <script src="https://unpkg.com/@phosphor-icons/web@2.0.3" defer></script>
+    
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet" />
     <link
@@ -1979,7 +1989,9 @@ EMPTY_BLOG_TEMPLATE = r"""<!DOCTYPE html>
 
 <body class="font-jakarta bg-white text-bol-black flex flex-col items-center w-full max-w-[100vw] mx-auto bg-white overflow-x-hidden relative" style="margin: 0; padding: 0;">
 
+    <main id="main-content">
         [[total_body]]
+    </main>
 
 
     <script>
@@ -2636,9 +2648,19 @@ async def create_blog_html(data: dict, other_blogs: list = []) -> str:
     l.append(await get_faq_section())
     l.append(await getFooter())
 
-    l = EMPTY_BLOG_TEMPLATE.replace("[[total_body]]", "\n".join(l))
+    html = EMPTY_BLOG_TEMPLATE.replace("[[total_body]]", "\n".join(l))
+    
+    # Replace SEO placeholders
+    blog_title = data.get('blogTitle', 'Suflex Media Blog')
+    blog_summary = data.get('blogSummary', 'Read our latest insights on content writing, digital marketing, and business growth strategies.')
+    
+    # Truncate meta description to 160 characters for SEO best practices
+    meta_description = blog_summary[:157] + '...' if len(blog_summary) > 160 else blog_summary
+    
+    html = html.replace("[[[title]]]", f"{blog_title} | Suflex Media Blog")
+    html = html.replace("[[[meta_description]]]", meta_description)
 
-    return l
+    return html
 
 
 async def get_admin_user(request: Request) -> Optional[dict]:

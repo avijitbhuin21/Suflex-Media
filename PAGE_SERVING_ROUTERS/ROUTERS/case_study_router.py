@@ -29,8 +29,7 @@ MAGAZINE_IFRAME_CONTENT = """<!DOCTYPE html>
     <!-- PDF.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 
-    <!-- PageFlip (flip.js) -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/page-flip/dist/css/page-flip.min.css" />
+    <!-- PageFlip (flip.js) - CSS styles are embedded inline below -->
     <script src="https://cdn.jsdelivr.net/npm/page-flip/dist/js/page-flip.browser.min.js"></script>
 
     <style>
@@ -1431,6 +1430,7 @@ def get_raw_html(pdf_url):
     iframe = f"""<iframe
                 id="my-flipbook-container"
                 class="w-full max-w-[52rem]"
+                title="PDF Flipbook Viewer - Interactive document viewer"
                 allow="clipboard-write"
                 sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-downloads"
                 allowfullscreen="true"
@@ -1629,11 +1629,14 @@ def generate_head_section(blog_data: Dict[str, Any], case_study_date: str) -> st
 
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://unpkg.com" crossorigin />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
     <link
         href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Playfair+Display:wght@400;600;700;800;900&family=Source+Sans+Pro:wght@300;400;600;700&display=swap"
         rel="stylesheet" />
     <link rel="stylesheet" href="/css/case_study.css" />
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/lucide@latest" defer></script>
 
     <script type="application/ld+json">
         {{
@@ -1659,7 +1662,7 @@ def generate_header_section() -> str:
     return """
     <header class="header">
         <div class="logo">
-            <a href="/"><img src="/images/logo_header.png" alt="Suflex Media Logo"></a>
+            <a href="/"><img src="/images/logo_header.png" alt="Suflex Media Logo" width="120" height="56"></a>
         </div>
         <nav class="nav-links">
             <a href="/">Home</a>
@@ -1678,12 +1681,12 @@ def generate_header_section() -> str:
             <a href="/case-studies" class="active">Case Studies</a>
             <a href="/blogs">Blog</a>
             <a href="/contact" class="contact-us">
-                <img src="/icons/phone-icon.png" alt="Phone icon" class="icon">
+                <img src="/icons/phone-icon.png" alt="Phone icon" class="icon" width="24" height="24">
                 <span>Contact Us</span>
             </a>
         </nav>
         <a href="/contact" class="contact-us">
-            <img src="/icons/phone-icon.png" alt="Phone icon" class="icon">
+            <img src="/icons/phone-icon.png" alt="Phone icon" class="icon" width="24" height="24">
             <span>Contact Us</span>
         </a>
         <div class="hamburger">
@@ -1941,9 +1944,9 @@ def generate_footer_section(blog_data: Dict[str, Any]) -> str:
             <div class="footer-section social-section">
                 <h3>Social Links</h3>
                 <div class="social-links">
-                    <a href="#"><img src="/icons/instagram.png" alt="Instagram"></a>
-                    <a href="#"><img src="/icons/linkedin.png" alt="LinkedIn"></a>
-                    <a href="#"><img src="/icons/x.png" alt="X"></a>
+                    <a href="#"><img src="/icons/instagram.png" alt="Instagram" width="32" height="32"></a>
+                    <a href="#"><img src="/icons/linkedin.png" alt="LinkedIn" width="32" height="32"></a>
+                    <a href="#"><img src="/icons/x.png" alt="X" width="32" height="32"></a>
                 </div>
             </div>
             <div class="footer-section contact-section">
@@ -1953,7 +1956,7 @@ def generate_footer_section(blog_data: Dict[str, Any]) -> str:
         </div>
         <div class="footer-bottom">
             <div class="footer-logo">
-                <img src="/images/logo_header.png" alt="Suflex Media Logo">
+                <img src="/images/logo_header.png" alt="Suflex Media Logo" width="150" height="70">
             </div>
             <div class="copyright">
                 <p>Copyright © 2025 SuflexMedia | All Rights Reserved</p>
