@@ -1074,21 +1074,21 @@ async def get_blog_hero_section(data: dict):
             .mobile-hero-article {{
                 max-width: 100% !important;
                 width: 100% !important;
-                margin: 0 !important;
+                margin: 0 auto !important;
                 padding: 0 !important;
             }}
             .mobile-hero-content {{
                 width: 100% !important;
-                margin-left: 0 !important;
-                margin-right: 0 !important;
+                margin-left: auto !important;
+                margin-right: auto !important;
                 padding-left: 4vw !important;
                 padding-right: 4vw !important;
                 box-sizing: border-box !important;
             }}
         }}
     </style>
-    <article>
-    <nav class="mb-2 text-left mobile-breadcrumb ml-0 md:ml-[-39.5rem] mt-2 md:mt-8" aria-label="Breadcrumb">
+    <article class="max-w-[1200px] mx-auto px-4">
+    <nav class="mb-2 text-left mobile-breadcrumb mt-2 md:mt-8" aria-label="Breadcrumb">
         <div class="text-sm text-gray-600">
             <span class="font-jakarta font-medium flex items-center flex-wrap">
                 <a href="/blogs" class="flex items-center font-bold">Blog</a>
@@ -1103,14 +1103,14 @@ async def get_blog_hero_section(data: dict):
         </div>
     </nav>
 </article>
-<article class="relative mobile-hero-article max-w-[95%]">
+<article class="relative mobile-hero-article max-w-[1200px] mx-auto">
     <div class="relative w-full h-[300px] md:h-[478px]">
         <div class="absolute inset-0 bg-cover bg-center"></div>
         <img src="{data.get('mainImageUrl', 'https://picsum.photos/seed/default/1200/600')}" alt="Blog main image"
             class="w-full h-full object-cover mix-blend-multiply" fetchpriority="high" width="1200" height="600" />
     </div>
     <div
-        class="relative bg-white mobile-hero-content md:w-full w-full md:ml-[3.3rem] ml-0 max-w-[1175px] h-auto mx-auto -mt-[40px] sm:-mt-[60px] md:-mt-[76px] p-4 sm:p-6 md:p-8 z-10 ">
+        class="relative bg-white mobile-hero-content w-full max-w-[1175px] h-auto mx-auto -mt-[40px] sm:-mt-[60px] md:-mt-[76px] p-4 sm:p-6 md:p-8 z-10">
         <h1
             class="font-jakarta font-medium text-[28px] sm:text-[34px] md:text-[42px] lg:text-[50px] leading-[1.2] md:leading-[1.25] capitalize text-black mb-3 md:mb-4 text-center hero-text">
             {data.get('blogTitle', 'Untitled Blog')}
