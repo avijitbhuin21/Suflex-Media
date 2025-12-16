@@ -43,6 +43,8 @@ body {
 
 .logo img {
     height: 7vh;
+    width: auto;
+    object-fit: contain;
 }
 
 .nav-links {
@@ -875,7 +877,7 @@ body {
 
     .side-card-left,
     .side-card-right {
-        position: static;
+        position: relative;
         width: 100%;
         height: 120%;
         margin: 0;
@@ -884,6 +886,7 @@ body {
         right: auto;
         top: auto;
         border-radius: 3.5vh;
+        overflow: hidden;
     }
 
     .side-card-left {
@@ -893,6 +896,11 @@ body {
 
     .side-card-left h3,
     .side-card-right h3 {
+        font-size: 3.5vw;
+    }
+
+    .side-card-left .card-title,
+    .side-card-right .card-title {
         font-size: 3.5vw;
     }
 
@@ -1612,6 +1620,8 @@ body {
 
 .card-left img {
     width: 3.5vw;
+    height: auto;
+    object-fit: contain;
 }
 
 .card-left p {
@@ -1676,6 +1686,7 @@ body {
     .care-card {
         padding: 4vw;
         border-radius: 3vw;
+        position: relative;
     }
 
     .card-left {
@@ -1684,6 +1695,8 @@ body {
 
     .card-left img {
         width: 12vw;
+        height: auto;
+        object-fit: contain;
     }
 
     .card-left p {
@@ -1692,9 +1705,12 @@ body {
 
     .card-arrow {
         width: 7vw;
+        height: auto;
+        object-fit: contain;
+        position: absolute;
         top: auto;
-        bottom: -11vw;
-        right: -2vw;
+        bottom: 2vw;
+        right: 2vw;
     }
 
     /* .care-cta-button {
@@ -2566,8 +2582,8 @@ body {
     .calendly-inline-widget {
         max-width: 92vw;
         border-radius: 5vw;
-        height: 99vh;
-        min-height: 650px;
+        height: 130vh;
+        min-height: 900px;
         background-color: transparent;
         border: none;
         box-shadow: none;
