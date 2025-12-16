@@ -955,9 +955,12 @@ body {
 }
 
 @keyframes float {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translateY(0px);
     }
+
     50% {
         transform: translateY(-20px);
     }
@@ -968,6 +971,7 @@ body {
         transform: translateY(100%);
         opacity: 0;
     }
+
     to {
         transform: translateY(0);
         opacity: 1;
@@ -1429,6 +1433,7 @@ body {
         position: inherit;
         left: 11%;
     }
+
     .about-hero-text span {
         font-size: 3.5vw;
         margin-top: 2vh;
@@ -1475,13 +1480,13 @@ body {
         bottom: -1vh;
         width: 6vw;
     }
-    
+
     .mission-section .diamonds-icon {
         left: 80vw;
         top: -67vh;
         width: 5vw;
     }
-    
+
     .mission-section .spring-arrow-icon {
         right: 82vw;
         top: -54vh;
@@ -1550,7 +1555,7 @@ body {
         font-weight: 400;
     }
 
-    
+
     .feature-cluster-new {
         display: block;
         width: 90vw;
@@ -1558,7 +1563,7 @@ body {
         margin: 5vh auto;
         position: relative;
     }
-    
+
     #creative-solutions-new {
         width: 38vw;
         height: 35vw;
@@ -1574,7 +1579,7 @@ body {
         top: -2vw;
         z-index: 1;
     }
-    
+
     #fast-delivery-new {
         width: 35vw;
         height: 35vw;
@@ -1582,7 +1587,7 @@ body {
         top: 15vw;
         z-index: 3;
     }
-    
+
     #transparency-new {
         width: 35vw;
         height: 35vw;
@@ -1590,7 +1595,7 @@ body {
         top: 40vw;
         z-index: 3;
     }
-    
+
     #attention-to-detail-new {
         width: 32vw;
         height: 30vw;
@@ -1614,7 +1619,7 @@ body {
         top: 70vw;
         z-index: 3;
     }
-    
+
     #aesthetic-design-new {
         width: 40vw;
         height: 40vw;
@@ -1630,7 +1635,7 @@ body {
         top: 85vw;
         z-index: 9;
     }
-    
+
     #data-driven-new {
         width: 35vw;
         height: 32vw;
@@ -1642,7 +1647,7 @@ body {
     .desktop-only {
         display: none;
     }
-    
+
     .mobile-only {
         display: block;
     }
@@ -1771,7 +1776,7 @@ body {
 
     .best-section {
         padding: 4vh 3vw;
-        height: 80vh;
+        height: 85vh;
     }
 
     .best-section-title h2 {
@@ -1784,22 +1789,23 @@ body {
     }
 
     .feature-cluster {
-    position: relative;
-    width: 90vw;
-    height: 40vh;
-    margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
+        position: relative;
+        width: 90vw;
+        height: 40vh;
+        margin: 0 auto;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        margin-top: -10vh;
     }
 
     .feature-cluster-new {
         height: 90vw;
         top: -25vw;
     }
-    
-        .feature-item-new img {
+
+    .feature-item-new img {
         width: 125%;
         height: 125%;
     }
@@ -1819,8 +1825,8 @@ body {
         position: absolute;
         width: 24.3896vw;
         height: 22.5455vw;
-        left: 8.6924vw;
-        top: 23.1338vw;
+        left: 7vw;
+        top: 38vw;
         z-index: 4;
     }
 

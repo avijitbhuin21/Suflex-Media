@@ -142,16 +142,23 @@ async def getHeader():
           width: 100% !important;
           max-width: 100vw !important;
           box-sizing: border-box !important;
+          display: flex !important;
+          align-items: center !important;
         }
 
         .header .logo {
           position: absolute !important;
           left: 50% !important;
           transform: translateX(-50%) !important;
+          display: flex !important;
+          align-items: center !important;
+          justify-content: center !important;
         }
 
         .header .logo img {
           height: 6vh !important;
+          width: auto !important;
+          object-fit: contain !important;
         }
 
         .header .nav-links {
@@ -278,6 +285,9 @@ async def getHeader():
 
 async def getFooter():
     return """
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
     <style>
       /* Footer Reset and Base Styles */
       .footer * {
@@ -1070,6 +1080,16 @@ async def get_blog_hero_section(data: dict):
                 padding-right: 4vw !important;
                 width: 100% !important;
                 box-sizing: border-box !important;
+                display: flex !important;
+                justify-content: center !important;
+            }}
+            .mobile-breadcrumb .text-sm {{
+                display: flex !important;
+                justify-content: center !important;
+                width: 100% !important;
+            }}
+            .mobile-breadcrumb .font-jakarta {{
+                justify-content: center !important;
             }}
             .mobile-hero-article {{
                 max-width: 100% !important;
@@ -1140,7 +1160,7 @@ async def generate_mobile_toc(data):
     """
     toc_sections = await _generate_toc_sections(data)
 
-    complete_toc = f"""<div class="block lg:hidden px-4 mt-8">
+    complete_toc = f"""<div class="block lg:hidden mt-8" style="padding-left: 4vw; padding-right: 4vw; margin: 0;">
             <div class="relative toc-container p-5 bg-white rounded-xl border-gray-100">
                 <h2 class="text-xl font-bold text-[#017AFF] mb-4 border-b pb-3">Table of Contents</h2>
                 {toc_sections}
