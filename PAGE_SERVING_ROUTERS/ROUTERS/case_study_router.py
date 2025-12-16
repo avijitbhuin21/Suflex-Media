@@ -1938,6 +1938,10 @@ def generate_footer_section(blog_data: Dict[str, Any]) -> str:
     return """
     </main>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-section cta">

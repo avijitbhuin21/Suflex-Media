@@ -73,10 +73,17 @@ header.article-header {
 h1.title {
     font-family: 'Lexend', sans-serif;
     font-weight: 800;
-    font-size: 2.5vw;
+    font-size: clamp(28px, 7vw, 2.5vw);
     line-height: 1.15;
     margin: 14px 0 8px;
     letter-spacing: -0.01em;
+}
+
+@media (max-width: 768px) {
+    h1.title {
+        font-size: 7vw !important;
+        line-height: 1.25 !important;
+    }
 }
 
 .meta {
@@ -263,6 +270,8 @@ blockquote {
 
 .logo img {
     height: 7vh;
+    width: auto;
+    object-fit: contain;
 }
 
 .nav-links {
@@ -431,6 +440,8 @@ blockquote {
 
     .logo img {
         height: 6vh !important;
+        width: auto !important;
+        object-fit: contain !important;
     }
 
     .nav-links {
@@ -579,6 +590,8 @@ blockquote {
 
     .logo img {
         height: 5vh !important;
+        width: auto !important;
+        object-fit: contain !important;
     }
 
     .nav-links {
