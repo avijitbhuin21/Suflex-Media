@@ -29,6 +29,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/zoom.css">
     <link rel="stylesheet" href="/css/services.css">
     <script src="https://unpkg.com/lucide@latest" defer></script>
 
@@ -37,7 +38,7 @@
         !function (f, b, e, v, n, t, s) {
             if (f.fbq) return; n = f.fbq = function () {
                 n.callMethod ?
-                n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
             };
             if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
             n.queue = []; t = b.createElement(e); t.async = !0;
@@ -54,7 +55,7 @@
 
 </head>
 
-<body>
+<body data-zoom-container>
 
     <header class="header">
         <div class="logo">
@@ -404,6 +405,7 @@
         </div>
     </footer>
 
+    <script src="/js/zoom.js"></script>
     <script src="/js/services.js"></script>
 
 </body>

@@ -16,9 +16,10 @@
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="/css/admin/admin_pdf_downloads.css" />
+    <link rel="stylesheet" href="/css/zoom.css">
 </head>
 
-<body>
+<body data-zoom-container>
     <nav class="fixed top-0 left-0 right-0 z-50">
         <div class="flex items-center justify-between px-6 py-4">
             <div class="flex items-center gap-4">
@@ -173,6 +174,7 @@
             window.location.href = '/login';
         }
     </script>
+    <script src="/js/zoom.js"></script>
     <script type="module" src="/js/admin_pdf_downloads.js"></script>
 </body>
 
