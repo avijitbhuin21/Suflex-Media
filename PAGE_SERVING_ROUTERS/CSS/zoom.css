@@ -1,0 +1,17 @@
+[data-zoom-container] {
+    overflow: hidden;
+    position: relative;
+}
+
+.zoom-content-wrapper {
+    transform-origin: 0 0;
+    will-change: transform;
+}
+
+[data-zoom-container].zoomed {
+    cursor: grab;
+}
+
+[data-zoom-container].zoomed:active {
+    cursor: grabbing;
+}
