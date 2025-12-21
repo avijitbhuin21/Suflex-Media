@@ -25,6 +25,16 @@ body {
     height: 100%;
 }
 
+body:has(.loading-overlay:not(.hidden)) {
+    overflow: hidden;
+}
+
+body:has(.loading-overlay:not(.hidden)) .brand,
+body:has(.loading-overlay:not(.hidden)) .container,
+body:has(.loading-overlay:not(.hidden)) .logout-btn {
+    visibility: hidden;
+}
+
 body {
     margin: 0;
     background: var(--bg);
@@ -73,6 +83,7 @@ body {
         opacity: 0;
         transform: translateY(-1vw);
     }
+
     to {
         opacity: .95;
         transform: translateY(0);
@@ -82,6 +93,7 @@ body {
 .container {
     width: 100%;
     max-width: 70vw;
+    margin: 0 auto;
     animation: rise .5s cubic-bezier(.2, .8, .2, 1) forwards;
 }
 
@@ -90,6 +102,7 @@ body {
         opacity: 0;
         transform: translateY(2vw);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -97,9 +110,15 @@ body {
 }
 
 .cards-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 2vw;
+}
+
+.card {
+    flex: 0 0 calc((100% - 4vw) / 3);
+    max-width: calc((100% - 4vw) / 3);
 }
 
 .card {
@@ -195,8 +214,9 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    right: 0;
+    bottom: 0;
+    min-height: 100vh;
     background: #0b0b0b;
     display: flex;
     align-items: center;

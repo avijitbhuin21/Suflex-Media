@@ -25,6 +25,16 @@ body {
     height: 100%;
 }
 
+body:has(.loading-overlay:not(.hidden)) {
+    overflow: hidden;
+}
+
+body:has(.loading-overlay:not(.hidden)) .brand,
+body:has(.loading-overlay:not(.hidden)) .container,
+body:has(.loading-overlay:not(.hidden)) .logout-btn {
+    visibility: hidden;
+}
+
 body {
     margin: 0;
     background: var(--bg);
@@ -73,6 +83,7 @@ body {
         opacity: 0;
         transform: translateY(-3vw);
     }
+
     to {
         opacity: .95;
         transform: translateY(0);
@@ -90,6 +101,7 @@ body {
         opacity: 0;
         transform: translateY(4vw);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -191,8 +203,9 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    right: 0;
+    bottom: 0;
+    min-height: 100vh;
     background: #0b0b0b;
     display: flex;
     align-items: center;

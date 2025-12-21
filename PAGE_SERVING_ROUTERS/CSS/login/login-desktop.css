@@ -31,8 +31,11 @@ body {
     background: var(--bg);
     color: var(--fg);
     font: 0.73vw/1.4 ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Apple Color Emoji, Segoe UI Emoji;
-    display: grid;
-    place-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
 }
 
 .card {
@@ -40,13 +43,20 @@ body {
     background: transparent;
     border: none;
     overflow: visible;
-    transform: translateY(-2.08vw);
     animation: rise .5s cubic-bezier(.2, .8, .2, 1) forwards;
+    margin: 0 auto;
+    text-align: center;
 }
 
 @keyframes rise {
+    from {
+        opacity: 0;
+        transform: translateY(1vw);
+    }
+
     to {
-        transform: translateY(-2.08vw);
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
@@ -56,7 +66,7 @@ header {
 
 
 .brand {
-    margin: 0 0 1.25vw;
+    margin: 3vw 0 3vw;
     font-size: 8vw;
     letter-spacing: 0.05vw;
     font-weight: 700;
@@ -74,7 +84,6 @@ header {
 form {
     display: grid;
     gap: 0.83vw;
-    margin-top: -25vh;
     scale: 1.1;
 }
 

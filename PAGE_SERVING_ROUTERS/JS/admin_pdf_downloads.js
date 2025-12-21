@@ -1,4 +1,17 @@
-document.addEventListener('DOMContentLoaded', () => {
+import { showLoading, verifyAuth, handleLogout } from './shared/auth-utils.js';
+
+(async function initAuth() {
+    showLoading(true);
+    const isAuthenticated = await verifyAuth();
+    if (!isAuthenticated) {
+        return;
+    }
+    initPage();
+})();
+
+window.handleLogout = handleLogout;
+
+function initPage() {
     const tableBody = document.getElementById('pdf-downloads-table-body');
     const prevPageBtn = document.getElementById('prev-page-btn');
     const nextPageBtn = document.getElementById('next-page-btn');
@@ -119,4 +132,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
     fetchPdfDownloads();
     fetchKpiData();
-});
+}

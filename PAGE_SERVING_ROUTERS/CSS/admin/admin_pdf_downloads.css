@@ -1,3 +1,20 @@
+@font-face {
+    font-family: 'TaraType';
+    src: url('/fonts/TaraType.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+:root {
+    --bg: #0b0b0b;
+    --fg: #eaeaea;
+    --muted: #bdbdbd;
+    --card: #111;
+    --border: #2a2a2a;
+    --accent: #fff;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -20,12 +37,8 @@ nav {
 }
 
 .logo-text {
-    font-family: 'Playfair Display', serif;
-    background: linear-gradient(135deg, #ffffff 0%, #a0a0a0 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    letter-spacing: -0.02em;
+    font-family: 'TaraType', serif;
+    letter-spacing: 0.02em;
 }
 
 .back-button {
@@ -41,23 +54,22 @@ nav {
 }
 
 .logout-button {
+    padding: 12px 24px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--fg);
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.5rem 1rem;
-    background: #ffffff;
-    color: #000000;
-    border: none;
-    border-radius: 9999px;
-    font-weight: 500;
-    font-size: 0.875rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
 }
 
 .logout-button:hover {
-    background: #f0f0f0;
-    transform: translateY(-1px);
+    background: var(--border);
+    color: #ff4a4a;
 }
 
 .page-title {
@@ -308,6 +320,7 @@ nav {
 }
 
 .spinner {
+    display: inline-block;
     width: 48px;
     height: 48px;
     border: 3px solid rgba(255, 255, 255, 0.1);
