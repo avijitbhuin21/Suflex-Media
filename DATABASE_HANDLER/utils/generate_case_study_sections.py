@@ -160,7 +160,7 @@ def generate_home_case_study_html(case_study):
         except (json.JSONDecodeError, TypeError):
             preview = {}
 
-    image_url = preview.get('imageUrl', '/images/Man-with-bulb.png')
+    image_url = preview.get('imageUrl', '/images/Man-with-bulb.svg')
 
     title = preview.get('blogTitle', 'Discover Our Latest Success Story')
     

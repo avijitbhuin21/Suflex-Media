@@ -603,7 +603,7 @@ body {
 }
 
 .footer-logo img {
-    height: 15vh;
+    height: 10vh;
 }
 
 .copyright {
@@ -632,10 +632,12 @@ body {
     .footer {
         padding: 0vh 8vw 8vw 8vw;
     }
+
     .main-illustration {
         width: 100vw !important;
         top: 5vh;
     }
+
     .footer-content {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -697,15 +699,18 @@ body {
         font-size: 3.5vw;
         text-align: center;
     }
+
     .content-wrapper {
-    margin-top: 0vh;
-    width: 100%;
+        margin-top: 0vh;
+        width: 100%;
     }
+
     .unique-services {
-    border: 1px solid #E0E0E0;
-    box-shadow: 0 1vw 3vw rgba(0, 0, 0, 0.05);
+        border: 1px solid #E0E0E0;
+        box-shadow: 0 1vw 3vw rgba(0, 0, 0, 0.05);
+    }
 }
-}
+
 .unique-container {
     margin-top: -5vh;
     font-family: 'Lexend', sans-serif;
@@ -791,12 +796,15 @@ body {
     .unique-services {
         max-width: 85vw;
     }
+
     .unique-services-title {
         font-size: 4vw;
     }
+
     .unique-service-text h3 {
         font-size: 2.2vw;
     }
+
     .unique-service-text p {
         font-size: 1.5vw;
     }
@@ -807,6 +815,7 @@ body {
     .unique-container {
         padding: 6vh 5vw;
     }
+
     .unique-services {
         max-width: 100%;
         padding: 4vh 6vw;
@@ -824,10 +833,10 @@ body {
     }
 
     .unique-service-icon {
-       width: 22vw;
-       height: 22vw;
-       max-width: 120px;
-       max-height: 120px;
+        width: 22vw;
+        height: 22vw;
+        max-width: 120px;
+        max-height: 120px;
     }
 
     .unique-service-icon img {
@@ -836,7 +845,7 @@ body {
         max-width: 60px;
         max-height: 60px;
     }
-    
+
     .unique-service-text {
         max-width: 60vw;
     }
@@ -857,35 +866,41 @@ body {
         left: 1vh;
         width: 7vw;
     }
+
     .doodle-arrow-right {
         top: -9vh;
         left: 8vw;
         width: 9vw;
         transform: rotate(-30deg);
     }
+
     .doodle-arrow-left {
         top: -25vh;
         right: 1vh;
         width: 9vw;
         transform: rotate(0deg);
     }
+
     .doodle-chat {
         top: 8vh;
         left: 18vw;
         width: 17vw;
     }
+
     .doodle-crown {
         top: 8vh;
         right: 37vw;
         width: 11vw;
         transform: rotate(15deg);
     }
+
     .doodle-lightning {
         bottom: 0vh;
         right: 17vw;
         width: 9vw;
         transform: rotate(5deg);
     }
+
     .doodle-spring {
         bottom: 11vh;
         right: 5vw;
@@ -902,6 +917,7 @@ body {
     border-radius: 25px;
     box-shadow: 0 4px 12px rgba(-0.15, 0, 0, 0.15);
 }
+
 .industry-star-title {
     font-weight: 600;
     font-size: 8vw;
@@ -992,11 +1008,11 @@ body {
         align-items: center;
         justify-content: flex-start;
     }
-    
+
     .card-content-wrapper {
         gap: 2vh;
     }
-    
+
     .card-icon {
         width: 5vw;
         height: 5vw;
@@ -1020,10 +1036,12 @@ body {
         gap: 3vw;
         max-width: 60vw;
     }
+
     .industry-star-card {
         padding: 4vh 2.5vw;
     }
 }
+
 .book-strategy-call-section {
     display: flex;
     flex-direction: row;
@@ -1096,7 +1114,7 @@ body {
     .book-strategy-call-left {
         max-width: 45%;
     }
-    
+
     .book-strategy-call-text {
         font-size: 1.6vw;
         line-height: 1.7;
@@ -1116,10 +1134,12 @@ body {
     .book-strategy-call-text {
         font-size: 1.3rem;
     }
+
     .book-strategy-call-button {
         font-size: 1rem;
     }
 }
+
 .schedule-section {
     position: relative;
     display: flex;
@@ -1224,6 +1244,7 @@ body {
     .schedule-heading {
         font-size: 5vw;
     }
+
     .scribble-line {
         bottom: -10%;
     }

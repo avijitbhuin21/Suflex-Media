@@ -510,7 +510,8 @@ body {
         max-width: 70vw;
         margin-left: 31%;
     }
-    .portfolio-hero-heading span{
+
+    .portfolio-hero-heading span {
         font-size: 8vw;
     }
 
@@ -874,7 +875,7 @@ body {
 }
 
 .footer-logo img {
-    height: 15vh;
+    height: 10vh;
 }
 
 .copyright {
@@ -928,11 +929,12 @@ body {
         max-width: 60vw;
         margin: 0 auto;
         transition: transform 0.3s ease;
-}
+    }
 
-.footer-section.cta .button:hover {
-    transform: scale(1.05);
-}
+    .footer-section.cta .button:hover {
+        transform: scale(1.05);
+    }
+
     .social-links {
         justify-content: flex-start;
         gap: 4vw;

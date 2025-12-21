@@ -1269,7 +1269,7 @@ body {
     }
 
     .work-with-us-content::before {
-        background-image: url('/images/handdrawn_doodle.png');
+        background-image: url('/images/handdrawn_doodle.svg');
         background-size: 100vw;
         background-repeat: repeat;
     }
@@ -2876,7 +2876,7 @@ body {
 }
 
 .footer-logo img {
-    height: 15vh;
+    height: 10vh;
 }
 
 .copyright {

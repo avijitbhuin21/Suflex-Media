@@ -180,15 +180,16 @@ body {
 .hamburger.active span:nth-child(3) {
     transform: rotate(-45deg) translate(7px, -7px);
 }
+
 /* Hero Section */
 .hero-section {
     display: flex;
     align-items: center;
     gap: 3vw;
-    padding-bottom: 8vh;
+    padding-bottom: 4vh;
     background-color: transparent;
     width: 85vw;
-    margin: 0 auto 5vh auto;
+    margin: 0 auto 2vh auto;
     border-radius: 1.5vw;
 }
 
@@ -271,6 +272,7 @@ body {
         width: 90vw;
         padding: 6vh 5vw;
         gap: 4vh;
+        margin-top: -10vh;
     }
 
     .hero-image-container {
@@ -285,7 +287,9 @@ body {
         font-size: 3.5vw;
     }
 
-    .hero-badge, .hero-read-time, .hero-read-more {
+    .hero-badge,
+    .hero-read-time,
+    .hero-read-more {
         font-size: 3vw;
     }
 }
@@ -485,7 +489,7 @@ body {
 
 .blogs-section {
     background-color: transparent;
-    padding: 8vh 5vw;
+    padding: 4vh 5vw;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -498,7 +502,7 @@ body {
 
 .section-heading {
     text-align: center;
-    margin-bottom: 5vh;
+    margin-bottom: 3vh;
 }
 
 .section-heading h1 {
@@ -768,6 +772,7 @@ body {
     0% {
         transform: translateX(0);
     }
+
     100% {
         transform: translateX(-100%);
     }
@@ -1148,13 +1153,61 @@ body {
         width: 4vw;
         height: 4vw;
     }
+
+    .latest-gossip-section {
+        padding-top: 0;
+        padding-bottom: 3vh;
+    }
+
+    .latest-gossip-section .section-heading {
+        width: 90vw;
+        margin-bottom: 2vh;
+        text-align: center;
+    }
+
+    .latest-gossip-section .section-heading h1 {
+        font-size: 7vw;
+        font-weight: 600;
+    }
+
+    .latest-gossip-section .section-description {
+        font-size: 3.5vw;
+    }
+
+    .mobile-editors-choice-section {
+        padding-top: 2vh;
+        padding-bottom: 3vh;
+    }
+
+    .mobile-editors-choice-section .section-heading {
+        margin-bottom: 2vh;
+    }
+
+    .mobile-editors-choice-section .section-heading h1 {
+        font-size: 7vw;
+        font-weight: 600;
+    }
+
+    .read-more-section {
+        padding-top: 2vh;
+        padding-bottom: 4vh;
+    }
+
+    .read-more-section .section-heading {
+        margin-bottom: 2vh;
+    }
+
+    .read-more-section .section-heading h1 {
+        font-size: 7vw;
+        font-weight: 600;
+    }
 }
 
 .footer {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 25vh 5vh 5vw 5vw;
+    padding: 5vh 5vh 5vw 5vw;
     background: linear-gradient(180deg, rgba(217, 217, 217, 0) 0%, rgba(1, 122, 255, 0.25) 100%);
     font-family: 'Lexend', sans-serif;
     gap: 5vh;
@@ -1241,7 +1294,7 @@ body {
 }
 
 .footer-logo img {
-    height: 15vh;
+    height: 10vh;
 }
 
 .copyright {
@@ -1250,7 +1303,7 @@ body {
 
 @media (max-width: 768px) {
     .footer {
-        padding: 15vh 8vw 8vw 8vw;
+        padding: 1vh 8vw 8vw 8vw;
     }
 
     .footer-content {
@@ -1318,7 +1371,7 @@ body {
 
 /* Editor's Choice Section */
 .editors-choice-section {
-    padding: 8vh 5vw;
+    padding: 4vh 5vw;
     background-color: transparent;
 }
 
@@ -1422,6 +1475,7 @@ body {
 }
 
 @media (max-width: 768px) {
+
     /* Hide desktop version on mobile */
     .editors-choice-section {
         display: none;
