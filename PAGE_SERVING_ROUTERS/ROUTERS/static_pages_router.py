@@ -16,7 +16,6 @@ STATIC_PAGES: Dict[str, str] = {
     "/about": "PAGE_SERVING_ROUTERS/PAGES/about_us.html",
     "/content-writing": "PAGE_SERVING_ROUTERS/PAGES/Content_writing.html",
     "/ghostwriting": "PAGE_SERVING_ROUTERS/PAGES/Book_writing.html",
-    "/landing": "PAGE_SERVING_ROUTERS/PAGES/landing_page.html",
     "/linkedin-branding": "PAGE_SERVING_ROUTERS/PAGES/LinkedIn_branding.html",
     "/performance-marketing": "PAGE_SERVING_ROUTERS/PAGES/Performance_marketing.html",
     "/seo": "PAGE_SERVING_ROUTERS/PAGES/SEO.html",
@@ -25,7 +24,8 @@ STATIC_PAGES: Dict[str, str] = {
     "/cancellation-and-refund-policy": "PAGE_SERVING_ROUTERS/PAGES/cancellation_and_refund_policy.html",
     "/terms-of-service": "PAGE_SERVING_ROUTERS/PAGES/terms_of_service.html",
     "/privacy-policy": "PAGE_SERVING_ROUTERS/PAGES/privacy_policy.html",
-    "/admin/pdf-downloads": "PAGE_SERVING_ROUTERS/PAGES/admin_pdf_downloads.html"
+    "/admin/pdf-downloads": "PAGE_SERVING_ROUTERS/PAGES/admin_pdf_downloads.html",
+    "/thank-you": "PAGE_SERVING_ROUTERS/PAGES/thank_you.html"
 }
 def create_page_route(route_path: str, html_file: str):
     """
