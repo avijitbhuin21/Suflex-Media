@@ -524,7 +524,7 @@ async def getFooter():
           <img src="/images/logo_header.png" alt="Suflex Media Logo" loading="lazy" width="150" height="100">
         </div>
         <div class="copyright">
-          <p>Copyright © 2024 SuflexMedia | All Rights Reserved</p>
+          <p>Copyright © 2025 SuflexMedia | All Rights Reserved</p>
         </div>
       </div>
     </footer>
