@@ -1,0 +1,26 @@
+{
+  "backup_timestamp": "2025-12-24T07:27:53.770854",
+  "tables": [
+    {
+      "table_name": "admin_users",
+      "row_count": 1,
+      "file": "admin_users.json"
+    },
+    {
+      "table_name": "blogs",
+      "row_count": 17,
+      "file": "blogs.json"
+    },
+    {
+      "table_name": "case_studies",
+      "row_count": 6,
+      "file": "case_studies.json"
+    },
+    {
+      "table_name": "pdf_downloads",
+      "row_count": 2,
+      "file": "pdf_downloads.json"
+    }
+  ],
+  "database_url_masked": "postgresql://postgre..."
+}

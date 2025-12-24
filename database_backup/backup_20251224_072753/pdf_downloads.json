@@ -1,0 +1,84 @@
+{
+  "table_name": "pdf_downloads",
+  "schema": [
+    {
+      "column_name": "id",
+      "data_type": "uuid",
+      "is_nullable": "NO",
+      "column_default": "gen_random_uuid()",
+      "character_maximum_length": null
+    },
+    {
+      "column_name": "timestamp",
+      "data_type": "timestamp without time zone",
+      "is_nullable": "YES",
+      "column_default": "CURRENT_TIMESTAMP",
+      "character_maximum_length": null
+    },
+    {
+      "column_name": "first_name",
+      "data_type": "character varying",
+      "is_nullable": "YES",
+      "column_default": null,
+      "character_maximum_length": 255
+    },
+    {
+      "column_name": "last_name",
+      "data_type": "character varying",
+      "is_nullable": "YES",
+      "column_default": null,
+      "character_maximum_length": 255
+    },
+    {
+      "column_name": "email",
+      "data_type": "character varying",
+      "is_nullable": "YES",
+      "column_default": null,
+      "character_maximum_length": 255
+    },
+    {
+      "column_name": "company_name",
+      "data_type": "character varying",
+      "is_nullable": "YES",
+      "column_default": null,
+      "character_maximum_length": 255
+    },
+    {
+      "column_name": "mobile_number",
+      "data_type": "character varying",
+      "is_nullable": "YES",
+      "column_default": null,
+      "character_maximum_length": 50
+    },
+    {
+      "column_name": "pdf_link",
+      "data_type": "text",
+      "is_nullable": "YES",
+      "column_default": null,
+      "character_maximum_length": null
+    }
+  ],
+  "row_count": 2,
+  "data": [
+    {
+      "id": "e279de40-086d-4aaa-928d-77b310c2b5cf",
+      "timestamp": "2025-11-30T14:32:47.891572",
+      "first_name": "Swapnendu",
+      "last_name": "Chakraborty",
+      "email": "swapnendu.chakraborty@cognizant.com",
+      "company_name": "HERITAGE INSTITUTE OF TECHNOLOGY",
+      "mobile_number": "08910410799",
+      "pdf_link": "https://suflexbolbucketpublic.my-intro.in:443/suflex-media/Dr G. Bakthavathsalam.pdf"
+    },
+    {
+      "id": "e37844c4-085a-4d72-b7c6-1cf841e7cc44",
+      "timestamp": "2025-11-30T14:34:00.500924",
+      "first_name": "Swapnendu",
+      "last_name": "Chakraborty",
+      "email": "swapnendu.chakraborty@cognizant.com",
+      "company_name": "HERITAGE INSTITUTE OF TECHNOLOGY",
+      "mobile_number": "08910410799",
+      "pdf_link": "http://localhost:5000/blog/linkedin-content-strategy-creating-value-driven-posts"
+    }
+  ]
+}

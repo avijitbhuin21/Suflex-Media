@@ -33,8 +33,6 @@ CREATE INDEX IF NOT EXISTS idx_blogs_isDeleted ON blogs(isDeleted);
 CREATE INDEX IF NOT EXISTS idx_blogs_keyword ON blogs USING GIN(keyword);
 CREATE INDEX IF NOT EXISTS idx_blogs_blog ON blogs USING GIN(blogContent);
 CREATE INDEX IF NOT EXISTS idx_blogs_editors_choice ON blogs(editors_choice) WHERE isDeleted = FALSE;
-CREATE INDEX IF NOT EXISTS idx_blogs_home_page ON blogs(home_page) WHERE isDeleted = FALSE;
-CREATE INDEX IF NOT EXISTS idx_blogs_hero_blog ON blogs(hero_blog) WHERE isDeleted = FALSE;
 CREATE INDEX IF NOT EXISTS idx_blogs_category ON blogs(category) WHERE isDeleted = FALSE;
 
 CREATE TABLE IF NOT EXISTS case_studies (

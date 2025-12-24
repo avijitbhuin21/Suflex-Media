@@ -35,8 +35,10 @@ Disallow: /api/
 # Block login page
 Disallow: /login
 
-# Block landing page (campaign-specific)
+# Block landing pages (campaign-specific)
 Disallow: /ghostwriting-landing
+Disallow: /lp/book-v1
+Disallow: /lp/linkedin-v1
 
 # Sitemap location
 Sitemap: https://suflexmedia.com/sitemap.xml
