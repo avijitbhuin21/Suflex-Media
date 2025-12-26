@@ -1657,6 +1657,15 @@ def generate_head_section(blog_data: Dict[str, Any], case_study_date: str) -> st
     /></noscript>
     <!-- End Meta Pixel Code -->
 
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0TDDEXN1HF"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){{dataLayer.push(arguments);}}
+      gtag('js', new Date());
+      gtag('config', 'G-0TDDEXN1HF');
+    </script>
+
     <script type="application/ld+json">
         {{
             "@context": "https://schema.org",

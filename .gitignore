@@ -5,6 +5,8 @@ __pycache__/
 
 trial.py
 clean_db.py
+/backup
+
 
 # C extensions
 *.so

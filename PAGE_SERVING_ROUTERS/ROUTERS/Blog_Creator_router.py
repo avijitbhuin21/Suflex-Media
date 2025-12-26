@@ -1420,6 +1420,15 @@ EMPTY_BLOG_TEMPLATE = r"""<!DOCTYPE html>
     /></noscript>
     <!-- End Meta Pixel Code -->
     
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0TDDEXN1HF"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-0TDDEXN1HF');
+    </script>
+    
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet" />
     <link

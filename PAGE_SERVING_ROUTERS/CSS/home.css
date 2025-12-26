@@ -2594,6 +2594,7 @@ body {
     #booking-section {
         padding-top: 8vh;
         padding-bottom: 0vh;
+        overflow: hidden;
     }
 
     .booking-header h2 {
@@ -3210,6 +3211,7 @@ body {
     min-width: 320px;
     min-height: 650px;
     width: 100%;
+    overscroll-behavior: contain;
 }
 
 @media (max-width: 768px) {
@@ -3232,9 +3234,11 @@ body {
 
     #calendly-container {
         min-height: 500px;
+        overscroll-behavior: contain;
     }
 
     .calendly-inline-widget {
         min-height: 500px;
+        overscroll-behavior: contain;
     }
 }
