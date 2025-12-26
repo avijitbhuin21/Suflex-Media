@@ -26,7 +26,7 @@ from API_ROUTERS.admin_users_api_router import router as admin_users_api_router
 from API_ROUTERS.serve_images_api_router import router as serve_images_api_router
 from API_ROUTERS.blogs_api_router import router as blogs_api_router
 from API_ROUTERS.case_studies_api_router import router as case_studies_api_router
-from API_ROUTERS.contact_us_api_router import router as contact_us_api_router
+
 from PAGE_SERVING_ROUTERS.ROUTERS.seo_router import router as seo_router
 
 
@@ -102,7 +102,7 @@ app.include_router(login_api_router)
 app.include_router(admin_users_api_router)
 app.include_router(serve_images_api_router)
 app.include_router(blogs_api_router)
-app.include_router(contact_us_api_router)
+
 app.include_router(case_studies_api_router)
 app.include_router(seo_router)
 app.include_router(landing_pages_router)

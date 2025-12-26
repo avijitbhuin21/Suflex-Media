@@ -148,12 +148,12 @@
                         <div class="form-group">
                             <select name="service" required>
                                 <option value="" disabled selected>Select Service</option>
-                                <option value="web-development">Web Development</option>
-                                <option value="app-development">App Development</option>
-                                <option value="digital-marketing">Digital Marketing</option>
-                                <option value="seo">SEO Services</option>
-                                <option value="graphic-design">Graphic Design</option>
-                                <option value="other">Other</option>
+                                <option value="book-writing">Book Writing</option>
+                                <option value="linkedin-branding">LinkedIn Branding</option>
+                                <option value="content-writing">Content Writing</option>
+                                <option value="performance-marketing">Performance Marketing</option>
+                                <option value="website-development">Website Development</option>
+                                <option value="seo">Search Engine Optimisation</option>
                             </select>
                         </div>
                     </div>
@@ -163,12 +163,19 @@
                     </div>
 
                     <div class="checkbox-group">
-                        <input type="checkbox" id="consent" name="consent" required>
+                        <input type="checkbox" id="terms" name="terms" required>
+                        <label for="terms">By submitting this form, I agree to the
+                            <a href="/terms-of-service" target="_blank"
+                                style="color: #007bff; text-decoration: underline;">Terms of Service</a></label>
+                    </div>
+
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="consent" name="consent">
                         <label for="consent">I hereby authorize to send notifications on
                             SMS/Messages/Promotional/Informational Messages</label>
                     </div>
 
-                    <button type="submit" class="submit-btn">Submit Now</button>
+                    <button type="submit" class="submit-btn" disabled>Submit Now</button>
                 </form>
             </div>
         </div>
@@ -266,7 +273,7 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script type="text/javascript">
         (function () {
-            emailjs.init("o9t8TF0k4wl0JeGFw");
+            emailjs.init("I54AIxoZ2TcTZoHWB");
         })();
     </script>
     <script src="/js/zoom.js"></script>
