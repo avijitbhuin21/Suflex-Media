@@ -23,9 +23,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const dropdown = document.querySelector('.dropdown');
     const dropdownToggle = document.querySelector('.dropdown-toggle');
-    
+
     if (dropdown && dropdownToggle) {
-        dropdownToggle.addEventListener('click', function(e) {
+        dropdownToggle.addEventListener('click', function (e) {
             e.preventDefault();
             e.stopPropagation();
             if (window.innerWidth <= 768) {
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
 
-        document.addEventListener('click', function(e) {
+        document.addEventListener('click', function (e) {
             if (window.innerWidth <= 768 && !dropdown.contains(e.target)) {
                 dropdown.classList.remove('active');
             }
@@ -47,7 +47,7 @@ document.getElementById('contactForm').addEventListener('submit', async function
     const form = this;
     const submitBtn = form.querySelector('.submit-btn');
     const originalBtnText = submitBtn.textContent;
-    
+
     submitBtn.textContent = 'Sending...';
     submitBtn.disabled = true;
 
@@ -63,12 +63,12 @@ document.getElementById('contactForm').addEventListener('submit', async function
 
     try {
         await emailjs.send("service_wkbsrmi", "template_q6h4zks", templateParams);
-        alert('Thank you for your message! We will get back to you soon.');
         form.reset();
+        const currentParams = window.location.search;
+        window.location.href = '/thank-you' + currentParams;
     } catch (error) {
         console.error('Error submitting form:', error);
         alert('An error occurred. Please try again later.');
-    } finally {
         submitBtn.textContent = originalBtnText;
         submitBtn.disabled = false;
     }
