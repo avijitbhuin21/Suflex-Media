@@ -14,12 +14,6 @@ DATABASE_URL = os.getenv("POSTGRES_CONNECTION_URL")
 
 STATIC_PAGES: Dict[str, str] = {
     "/about": "PAGE_SERVING_ROUTERS/PAGES/about_us.html",
-    "/content-writing": "PAGE_SERVING_ROUTERS/PAGES/Content_writing.html",
-    "/ghostwriting": "PAGE_SERVING_ROUTERS/PAGES/Book_writing.html",
-    "/linkedin-branding": "PAGE_SERVING_ROUTERS/PAGES/LinkedIn_branding.html",
-    "/performance-marketing": "PAGE_SERVING_ROUTERS/PAGES/Performance_marketing.html",
-    "/seo": "PAGE_SERVING_ROUTERS/PAGES/SEO.html",
-    "/website-development": "PAGE_SERVING_ROUTERS/PAGES/Website_development.html",
     "/contact": "PAGE_SERVING_ROUTERS/PAGES/contact_us.html",
     "/cancellation-and-refund-policy": "PAGE_SERVING_ROUTERS/PAGES/cancellation_and_refund_policy.html",
     "/terms-of-service": "PAGE_SERVING_ROUTERS/PAGES/terms_of_service.html",
@@ -202,12 +196,67 @@ async def get_homepage():
             '[[[imageURL]]]',
             image_url
         )
+        
+        base_calendly_url = os.getenv("BASE_CALENDLY_URL", "https://calendly.com/suflex-media/discovery-call?hide_gdpr_banner=1")
+        html_content = html_content.replace(
+            '[[[base_calendly_url]]]',
+            base_calendly_url
+        )
 
         return HTMLResponse(content=html_content)
     except Exception as e:
         print(f"Error loading homepage: {e}")
-        # Fallback to serving the static file if there's an error
         return FileResponse("PAGE_SERVING_ROUTERS/PAGES/home.html")
     finally:
         if conn:
             await conn.close()
+
+
+CALENDLY_URL_MAPPING = {
+    "/ghostwriting": "BOOK_V1_URL",
+    "/linkedin-branding": "LINKEDIN_V1_URL",
+    "/content-writing": "BASE_CALENDLY_URL",
+    "/performance-marketing": "BASE_CALENDLY_URL",
+    "/seo": "BASE_CALENDLY_URL",
+    "/website-development": "BASE_CALENDLY_URL",
+}
+
+CALENDLY_URL_DEFAULTS = {
+    "BOOK_V1_URL": "https://calendly.com/suflex-media/book-ghostwriting?hide_gdpr_banner=1",
+    "LINKEDIN_V1_URL": "https://calendly.com/suflex-media/linkedin-strategy-call?hide_gdpr_banner=1",
+    "BASE_CALENDLY_URL": "https://calendly.com/suflex-media/discovery-call?hide_gdpr_banner=1",
+}
+
+
+def create_service_page_route(route_path: str, html_file: str):
+    async def service_page_handler():
+        with open(html_file, "r", encoding="utf-8") as file:
+            html_content = file.read()
+        
+        env_var_name = CALENDLY_URL_MAPPING.get(route_path)
+        if env_var_name:
+            calendly_url = os.getenv(env_var_name, CALENDLY_URL_DEFAULTS.get(env_var_name, ""))
+            html_content = html_content.replace("[[[calendly_url]]]", calendly_url)
+        
+        return HTMLResponse(content=html_content)
+    return service_page_handler
+
+
+SERVICE_PAGES = {
+    "/ghostwriting": "PAGE_SERVING_ROUTERS/PAGES/Book_writing.html",
+    "/linkedin-branding": "PAGE_SERVING_ROUTERS/PAGES/LinkedIn_branding.html",
+    "/content-writing": "PAGE_SERVING_ROUTERS/PAGES/Content_writing.html",
+    "/performance-marketing": "PAGE_SERVING_ROUTERS/PAGES/Performance_marketing.html",
+    "/seo": "PAGE_SERVING_ROUTERS/PAGES/SEO.html",
+    "/website-development": "PAGE_SERVING_ROUTERS/PAGES/Website_development.html",
+}
+
+for route_path, html_file in SERVICE_PAGES.items():
+    if route_path in STATIC_PAGES:
+        continue
+    router.add_api_route(
+        route_path,
+        create_service_page_route(route_path, html_file),
+        methods=["GET"],
+        name=f"serve_{route_path.replace('/', '_').strip('_')}_service_page"
+    )

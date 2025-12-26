@@ -485,7 +485,7 @@ async def getFooter():
       <div class="footer-content">
         <div class="footer-section cta">
           <h2>Ready to grow your<br>business?</h2>
-          <a href="/contact" class="button">Book a free strategy call</a>
+          <a href="/contact" class="button">Get In Touch</a>
         </div>
         <div class="footer-section">
           <h3>Quick Links</h3>
@@ -1384,7 +1384,7 @@ EMPTY_BLOG_TEMPLATE = r"""<!DOCTYPE html>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="[[[meta_description]]]" />
     <title>[[[title]]]</title>
-    <link rel="icon" type="image/png" href="static/icon/website_icon.png" />
+    <link rel="icon" type="image/png" href="/images/logo_header.png">
     
     <!-- Preconnect hints for faster resource loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

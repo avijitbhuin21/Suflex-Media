@@ -113,7 +113,7 @@
                 <p class="sub-heading">300+ Customers Served 🙌</p>
 
                 <div class="cta-container">
-                    <a href="/contact" class="cta-button">
+                    <a href="#booking-section" class="cta-button scroll-to-calendly">
                         <div class="cta-inner">
                             <span class="cta-text">Book a free strategy call</span>
                             <div class="cta-icon">
@@ -314,7 +314,9 @@
                         <img src="/icons/Blue-Arrow.png" alt="Arrow" class="card-arrow" width="50" height="50">
                     </a>
                 </div>
-                <button class="care-cta-button" onclick="location.href='/contact'">Book a free strategy call</button>
+                <button class="care-cta-button scroll-to-calendly"
+                    onclick="document.getElementById('booking-section').scrollIntoView({behavior: 'smooth'})">Book a
+                    free strategy call</button>
             </div>
         </section>
 
@@ -364,7 +366,7 @@
                 <h2>Ready to <span>work</span> with us?</h2>
             </div>
             <div class="booking-main">
-                <div class="calendly-inline-widget" data-url="https://calendly.com/suflex-media/linkedin-strategy-call">
+                <div class="calendly-inline-widget" data-url="[[[base_calendly_url]]]">
                 </div>
             </div>
         </section>
@@ -415,7 +417,7 @@
         <div class="footer-content">
             <div class="footer-section cta">
                 <h2>Ready to grow your<br>business?</h2>
-                <a href="/contact" class="button">Book a free strategy call</a>
+                <a href="/contact" class="button">Get In Touch</a>
             </div>
             <div class="footer-section">
                 <h3>Quick Links</h3>
@@ -500,6 +502,35 @@
     <script src="/js/zoom.js"></script>
     <script src="/js/home.js"></script>
     <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('.scroll-to-calendly, a[href="#booking-section"]').forEach(function (el) {
+                el.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    var target = document.getElementById('booking-section');
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            });
+        });
+
+        (function () {
+            var currentUrlParams = window.location.search;
+            function isCalendlyEvent(e) {
+                return e.origin === "https://calendly.com" && e.data.event && e.data.event.indexOf('calendly.') === 0;
+            }
+            window.addEventListener('message', function (e) {
+                if (isCalendlyEvent(e)) {
+                    if (e.data.event === 'calendly.event_scheduled') {
+                        var thankYouUrl = '/thank-you' + currentUrlParams;
+                        window.location.href = thankYouUrl;
+                    }
+                }
+            });
+        })();
+    </script>
 
 </body>
 

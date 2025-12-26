@@ -372,7 +372,8 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 12vh 0vh 0vh 0vh;
+    padding: 0vh 0vh 0vh 0vh;
+    margin-top: -2vh;
 }
 
 .contact-wrapper {

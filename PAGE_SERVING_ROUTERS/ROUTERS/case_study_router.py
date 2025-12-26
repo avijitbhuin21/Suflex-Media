@@ -25,6 +25,7 @@ MAGAZINE_IFRAME_CONTENT = """<!DOCTYPE html>
         content="width=device-width, initial-scale=1.0, viewport-fit=cover"
     />
     <title>Magazine Flipbook Viewer</title>
+    <link rel="icon" type="image/png" href="/images/logo_header.png">
 
     <!-- PDF.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
@@ -1946,7 +1947,7 @@ def generate_footer_section(blog_data: Dict[str, Any]) -> str:
         <div class="footer-content">
             <div class="footer-section cta">
                 <h2>Ready to grow your<br>business?</h2>
-                <a href="/contact" class="button">Book a free strategy call</a>
+                <a href="/contact" class="button">Get In Touch</a>
             </div>
             <div class="footer-section">
                 <h3>Quick Links</h3>

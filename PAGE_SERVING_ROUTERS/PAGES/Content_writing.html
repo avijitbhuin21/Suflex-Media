@@ -101,7 +101,7 @@
                 Words That <span class="highlight">Work For Your Business</span>
             </h1>
             <p class="tagline">Strategic Content Writing Services That Drive Engagement & Conversions Since 2020</p>
-            <button class="cta-button" onclick="window.location.href='/contact'">
+            <button class="cta-button scroll-to-calendly">
                 Book a free strategy call
                 <div class="cta-icon">
                     <img src="/icons/arrow.png" alt="arrow">
@@ -142,7 +142,7 @@
                     <div class="description">Client Retention<br />Rate</div>
                 </div>
             </div>
-            <button class="cta-button" onclick="window.location.href='/contact'">Book a free strategy call</button>
+            <button class="cta-button scroll-to-calendly">Book a free strategy call</button>
         </section>
 
 
@@ -206,7 +206,7 @@
                 </div>
             </div>
             <div class="cta-container">
-                <button class="cta-button" onclick="window.location.href='/contact'">
+                <button class="cta-button scroll-to-calendly">
                     Book a free strategy call
                     <div class="cta-icon">
                         <img src="/icons/arrow.png" alt="arrow">
@@ -223,11 +223,22 @@
                     <p>Every business has unique content needs. Whether it's industry-specific technical writing,
                         creative storytelling, or something entirely custom—we adapt our approach to match your vision
                         and goals.</p>
-                    <a href="/contact" class="cta-button">Book a free strategy call</a>
+                    <a href="#calendly-section" class="cta-button scroll-to-calendly">Book a free strategy call</a>
                 </div>
                 <div class="perfect-fit-illustration">
                     <img src="/images/NotSeeingPerfectFit.png" alt="Creative content illustration" loading="lazy">
                 </div>
+            </div>
+        </section>
+
+        <section id="calendly-section" class="calendly-booking-section"
+            style="padding: 60px 20px; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);">
+            <div style="max-width: 1000px; margin: 0 auto; text-align: center;">
+                <h2 style="color: #fff; font-size: 2rem; margin-bottom: 10px;">Ready to <span
+                        style="color: #4A90FF;">Create Impactful Content?</span></h2>
+                <p style="color: #ccc; margin-bottom: 30px;">Book a free strategy call to discuss your content needs</p>
+                <div class="calendly-inline-widget" data-url="[[[calendly_url]]]"
+                    style="min-width: 320px; width: 100%; height: 700px;"></div>
             </div>
         </section>
 
@@ -352,7 +363,8 @@
         <section class="book-strategy-cta-section">
             <div class="book-strategy-cta-content">
                 <h2 class="book-strategy-cta-title">Start Creating Impactful Content Today!</h2>
-                <a href="/contact" class="book-strategy-cta-button">Book a free strategy call</a>
+                <a href="#calendly-section" class="book-strategy-cta-button scroll-to-calendly">Book a free strategy
+                    call</a>
             </div>
         </section>
 
@@ -362,7 +374,7 @@
         <div class="footer-content">
             <div class="footer-section cta">
                 <h2>Ready to grow your<br>business?</h2>
-                <a href="/contact" class="button">Book a free strategy call</a>
+                <a href="/contact" class="button">Get In Touch</a>
             </div>
             <div class="footer-section">
                 <h3>Quick Links</h3>
@@ -408,6 +420,36 @@
 
     <script src="/js/zoom.js"></script>
     <script src="/js/services.js"></script>
+    <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('.scroll-to-calendly, a[href="#calendly-section"]').forEach(function (el) {
+                el.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    var target = document.getElementById('calendly-section');
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            });
+        });
+
+        (function () {
+            var currentUrlParams = window.location.search;
+            function isCalendlyEvent(e) {
+                return e.origin === "https://calendly.com" && e.data.event && e.data.event.indexOf('calendly.') === 0;
+            }
+            window.addEventListener('message', function (e) {
+                if (isCalendlyEvent(e)) {
+                    if (e.data.event === 'calendly.event_scheduled') {
+                        var thankYouUrl = '/thank-you' + currentUrlParams;
+                        window.location.href = thankYouUrl;
+                    }
+                }
+            });
+        })();
+    </script>
 
 </body>
 
